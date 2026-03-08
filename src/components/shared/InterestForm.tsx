@@ -25,11 +25,17 @@ const schema = z.object({
 const InterestForm = ({ inquiryType, propertyId, unitId, propertyName, unitName, onClose }: Props) => {
   const { t } = useLanguage();
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<{
+    full_name: string;
+    phone: string;
+    email: string;
+    preferred_contact_method: 'email' | 'phone' | 'whatsapp';
+    message: string;
+  }>({
     full_name: '',
     phone: '',
     email: '',
-    preferred_contact_method: 'email' as const,
+    preferred_contact_method: 'email',
     message: '',
   });
 
