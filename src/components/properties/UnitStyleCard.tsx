@@ -1,6 +1,7 @@
 import { useLanguage } from '@/context/LanguageContext';
 import { BedDouble, Bath, Maximize, Building2, Check, X, Gem, Waves } from 'lucide-react';
 import type { Unit } from '@/types';
+import UnitImageGallery from './UnitImageGallery';
 
 interface Props {
   unit: Unit;
@@ -45,18 +46,11 @@ const UnitStyleCard = ({ unit, onInterest, index }: Props) => {
     <article className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
       <div className={`grid md:grid-cols-2 ${isEven ? 'md:direction-rtl' : ''}`}>
         {/* ── Image Panel ── */}
-        <div className="relative bg-muted">
-          <img
-            src={unit.brochure_image}
+        <div className="relative min-h-[340px] md:min-h-[520px]">
+          <UnitImageGallery
+            images={unit.gallery_images?.length ? unit.gallery_images : [unit.brochure_image]}
             alt={title}
-            className="h-full min-h-[340px] w-full object-cover md:min-h-[520px]"
           />
-          {/* Style code chip */}
-          <div className="absolute top-5 left-5 rtl:left-auto rtl:right-5">
-            <span className="rounded bg-accent/90 px-3.5 py-1.5 font-body text-xs font-bold uppercase tracking-widest text-accent-foreground backdrop-blur-sm">
-              {unit.style_code}
-            </span>
-          </div>
         </div>
 
         {/* ── Information Panel ── */}
