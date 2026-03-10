@@ -25,7 +25,7 @@ const fadeUp = {
 };
 
 const Index = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
   const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
@@ -77,9 +77,11 @@ const Index = () => {
               {t('Defining Luxury Living in Oman', 'حيث تبدأ الفخامة')}
             </motion.p>
             <motion.h1 variants={fadeUp} custom={1} className="font-display text-5xl font-bold leading-[1.1] text-cream md:text-7xl lg:text-8xl">
-              {t('Building', 'نبني')}<br />
-              <span className="text-gradient-gold">{t('Landmarks', 'معالم')}</span><br />
-              {t('of Tomorrow', 'الغد')}
+              {language === 'ar' ? (
+                <>نبني <span className="text-gradient-gold">معالم</span> الغد</>
+              ) : (
+                <>Building<br /><span className="text-gradient-gold">Landmarks</span><br />of Tomorrow</>
+              )}
             </motion.h1>
             <motion.p variants={fadeUp} custom={2} className="mt-7 max-w-2xl mx-auto font-body text-lg leading-relaxed text-cream/70 md:text-xl">
               {t(
