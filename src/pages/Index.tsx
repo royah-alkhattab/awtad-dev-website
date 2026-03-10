@@ -41,9 +41,9 @@ const Index = () => {
   }, []);
 
   const stats = [
-    { value: '15', label: t('Years of Excellence', 'عاماً من التميز'), suffix: '+' },
-    { value: '3,200', label: t('Units Delivered', 'وحدة تم تسليمها'), suffix: '+' },
-    { value: '12', label: t('Active Projects', 'مشروع نشط'), suffix: '' },
+    { value: '5', label: t('Years of Excellence', 'عاماً من التميز'), suffix: '+' },
+    { value: '1,000', label: t('Units Delivered', 'وحدة تم تسليمها'), suffix: '+' },
+    { value: '4', label: t('Active Projects', 'مشروع نشط'), suffix: '' },
     { value: '98', label: t('Client Satisfaction', 'رضا العملاء'), suffix: '%' },
   ];
 
@@ -176,8 +176,8 @@ const Index = () => {
             </h2>
             <p className="font-body text-base leading-[1.8] text-muted-foreground mb-5">
               {t(
-                'For over 15 years, Awtad has been at the forefront of property development in the Sultanate of Oman, creating spaces that inspire and endure. Our commitment to quality, innovation, and client satisfaction has established us as one of the most trusted names in the industry.',
-                'منذ أكثر من 15 عامًا، تتصدر أوتاد مشهد التطوير العقاري في سلطنة عُمان، وتبتكر مساحات تلهم وتدوم. لقد رسّخ التزامنا بالجودة والابتكار ورضا العملاء اسمنا كأحد أكثر الأسماء الموثوقة في القطاع.'
+                'For over 5 years, Awtad has been at the forefront of property development in the Sultanate of Oman, creating spaces that inspire and endure. Our commitment to quality, innovation, and client satisfaction has established us as one of the most trusted names in the industry.',
+                'منذ أكثر من 5 أعوام، تتصدر أوتاد مشهد التطوير العقاري في سلطنة عُمان، وتبتكر مساحات تلهم وتدوم. لقد رسّخ التزامنا بالجودة والابتكار ورضا العملاء اسمنا كأحد أكثر الأسماء الموثوقة في القطاع.'
               )}
             </p>
             <p className="font-body text-base leading-[1.8] text-muted-foreground mb-8">
@@ -197,12 +197,12 @@ const Index = () => {
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/80 to-transparent p-8 pt-20">
                 <div className="flex items-end gap-6">
                   <div>
-                    <p className="font-display text-4xl font-bold text-gradient-gold">15+</p>
+                    <p className="font-display text-4xl font-bold text-gradient-gold">5+</p>
                     <p className="font-body text-sm text-cream/80 mt-1">{t('Years of Excellence', 'عاماً من التميز')}</p>
                   </div>
                   <div className="h-12 w-px bg-cream/20" />
                   <div>
-                    <p className="font-display text-4xl font-bold text-gradient-gold">3,200+</p>
+                    <p className="font-display text-4xl font-bold text-gradient-gold">1,000+</p>
                     <p className="font-body text-sm text-cream/80 mt-1">{t('Units Delivered', 'وحدة تم تسليمها')}</p>
                   </div>
                 </div>
