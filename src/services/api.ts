@@ -62,6 +62,7 @@ interface StrapiProperty {
   living_rooms: number;
   balconies: number;
   working_rooms: number;
+  display_order: number;
   total_units: number;
   available_units: number;
   image?: { url: string };
@@ -357,8 +358,8 @@ export async function getPropertyBySlug(slug: string): Promise<Property | undefi
 
 export async function getUnitsByProperty(buildingId: string): Promise<Unit[]> {
   try {
-    // Fetch property types from the building
-    const res = await fetch(`${API_BASE_URL}/properties?filters[building][documentId][$eq]=${buildingId}&populate=*`);
+    // Fetch property types from the building, sorted by display_order
+    const res = await fetch(`${API_BASE_URL}/properties?filters[building][documentId][$eq]=${buildingId}&sort=display_order:asc&populate=*`);
     if (res.ok) {
       const json: StrapiResponse<StrapiProperty[]> = await res.json();
       return json.data.map(prop => mapPropertyToUnit(prop, buildingId));

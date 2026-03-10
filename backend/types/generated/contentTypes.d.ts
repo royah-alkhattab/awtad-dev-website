@@ -546,6 +546,7 @@ export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
     description_ar: Schema.Attribute.Text;
+    display_order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     floorplan: Schema.Attribute.Media<'images'>;
     floors: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<1>;
     gallery: Schema.Attribute.Media<'images', true>;
