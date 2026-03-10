@@ -124,6 +124,9 @@ function mapBuildingToProperty(building: StrapiBuilding): Property {
     availability_summary: availableUnits > 0
       ? `${availableUnits} units available`
       : `${typeCount} types available`,
+    availability_summary_ar: availableUnits > 0
+      ? `${availableUnits} وحدة متاحة`
+      : `${typeCount} أنواع متاحة`,
     total_units: totalUnits || typeCount,
     amenities: building.amenities || [],
     amenities_ar: building.amenities_ar || [],
@@ -176,6 +179,7 @@ const mockProperties: Property[] = [
     location_ar: 'الموج، مسقط',
     status: 'under_construction',
     availability_summary: '24 units available',
+    availability_summary_ar: '24 وحدة متاحة',
     total_units: 120,
     amenities: ['Swimming Pool', 'Gym', 'Private Beach', 'Concierge', 'Parking', 'Garden', 'Smart Home', 'Sea View', 'High Ceilings'],
     amenities_ar: ['مسبح', 'صالة رياضية', 'شاطئ خاص', 'خدمة الكونسيرج', 'مواقف سيارات', 'حديقة', 'منزل ذكي', 'إطلالة بحرية', 'أسقف عالية'],
@@ -199,6 +203,7 @@ const mockProperties: Property[] = [
     location_ar: 'الخوض، مسقط',
     status: 'ready',
     availability_summary: '8 villas remaining',
+    availability_summary_ar: '8 فلل متبقية',
     total_units: 45,
     amenities: ['Community Pool', 'Clubhouse', 'Playground', 'Walking Trails', 'Security', 'Private Garden', 'Double Garage'],
     amenities_ar: ['مسبح مشترك', 'نادي', 'ملعب أطفال', 'مسارات المشي', 'أمن', 'حديقة خاصة', 'كراج مزدوج'],
@@ -222,6 +227,7 @@ const mockProperties: Property[] = [
     location_ar: 'المنطقة التجارية، مسقط',
     status: 'upcoming',
     availability_summary: 'Pre-registration open',
+    availability_summary_ar: 'التسجيل المسبق مفتوح',
     total_units: 200,
     amenities: ['Rooftop Lounge', 'Business Center', 'Valet Parking', 'Retail Mall', 'Sky Gym', 'City View', 'Smart Building'],
     amenities_ar: ['صالة على السطح', 'مركز أعمال', 'خدمة صف السيارات', 'مول تجاري', 'صالة رياضية', 'إطلالة على المدينة', 'مبنى ذكي'],

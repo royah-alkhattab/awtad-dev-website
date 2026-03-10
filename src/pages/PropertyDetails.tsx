@@ -133,7 +133,7 @@ const PropertyDetails = () => {
           <ScrollReveal delay={0.2} className="lg:col-span-1">
             <div className="sticky top-28 rounded-lg border border-border bg-card p-6 shadow-sm">
               <h3 className="font-display text-lg font-semibold text-foreground mb-2">{t('Interested in this project?', 'مهتم بهذا المشروع؟')}</h3>
-              <p className="font-body text-sm text-muted-foreground mb-4">{property.availability_summary}</p>
+              <p className="font-body text-sm text-muted-foreground mb-4">{language === 'en' ? property.availability_summary : property.availability_summary_ar}</p>
               <button
                 onClick={handleProjectInterest}
                 className="w-full rounded-md bg-gradient-gold px-6 py-3 font-body text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"

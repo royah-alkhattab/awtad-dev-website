@@ -13,6 +13,7 @@ export interface Property {
   location_ar: string;
   status: 'upcoming' | 'under_construction' | 'ready' | 'sold_out';
   availability_summary: string;
+  availability_summary_ar: string;
   total_units: number;
   amenities: string[];
   amenities_ar: string[];

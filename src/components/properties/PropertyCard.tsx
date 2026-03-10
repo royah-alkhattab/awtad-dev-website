@@ -54,7 +54,7 @@ const PropertyCard = ({ property }: Props) => {
           <h3 className="font-display text-xl font-semibold text-foreground mb-2">{name}</h3>
           <p className="font-body text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-4">{desc}</p>
           <div className="flex items-center justify-between">
-            <span className="font-body text-xs text-muted-foreground">{property.availability_summary}</span>
+            <span className="font-body text-xs text-muted-foreground">{language === 'en' ? property.availability_summary : property.availability_summary_ar}</span>
             <span className="flex items-center gap-1 font-body text-sm font-medium text-primary transition-colors group-hover:text-gold-dark">
               {t('View Details', 'عرض التفاصيل')}
               <ArrowRight size={14} className="transition-transform group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" />
