@@ -464,8 +464,6 @@ export interface ApiBuildingBuilding extends Struct.CollectionTypeSchema {
         };
       }>;
     featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    features: Schema.Attribute.JSON;
-    features_ar: Schema.Attribute.JSON;
     gallery: Schema.Attribute.Media<'images', true>;
     image: Schema.Attribute.Media<'images'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;

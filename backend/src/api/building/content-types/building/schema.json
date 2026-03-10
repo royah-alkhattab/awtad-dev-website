@@ -88,14 +88,6 @@
     "amenities_ar": {
       "type": "json",
       "required": false
-    },
-    "features": {
-      "type": "json",
-      "required": false
-    },
-    "features_ar": {
-      "type": "json",
-      "required": false
     }
   }
 }

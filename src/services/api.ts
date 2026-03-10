@@ -38,8 +38,6 @@ interface StrapiBuilding {
   properties?: StrapiProperty[];
   amenities?: string[];
   amenities_ar?: string[];
-  features?: string[];
-  features_ar?: string[];
   createdAt: string;
   updatedAt: string;
 }
@@ -128,8 +126,8 @@ function mapBuildingToProperty(building: StrapiBuilding): Property {
     total_units: totalUnits || typeCount,
     amenities: building.amenities || [],
     amenities_ar: building.amenities_ar || [],
-    features: building.features || [],
-    features_ar: building.features_ar || [],
+    features: [],
+    features_ar: [],
     created_at: building.createdAt,
     updated_at: building.updatedAt,
   };
@@ -178,10 +176,10 @@ const mockProperties: Property[] = [
     status: 'under_construction',
     availability_summary: '24 units available',
     total_units: 120,
-    amenities: ['Swimming Pool', 'Gym', 'Private Beach', 'Concierge', 'Parking', 'Garden'],
-    amenities_ar: ['مسبح', 'صالة رياضية', 'شاطئ خاص', 'خدمة الكونسيرج', 'مواقف سيارات', 'حديقة'],
-    features: ['Smart Home', 'Sea View', 'High Ceilings', 'Premium Finishes'],
-    features_ar: ['منزل ذكي', 'إطلالة بحرية', 'أسقف عالية', 'تشطيبات فاخرة'],
+    amenities: ['Swimming Pool', 'Gym', 'Private Beach', 'Concierge', 'Parking', 'Garden', 'Smart Home', 'Sea View', 'High Ceilings'],
+    amenities_ar: ['مسبح', 'صالة رياضية', 'شاطئ خاص', 'خدمة الكونسيرج', 'مواقف سيارات', 'حديقة', 'منزل ذكي', 'إطلالة بحرية', 'أسقف عالية'],
+    features: [],
+    features_ar: [],
     created_at: '2024-01-15',
     updated_at: '2024-06-01',
   },
@@ -201,10 +199,10 @@ const mockProperties: Property[] = [
     status: 'ready',
     availability_summary: '8 villas remaining',
     total_units: 45,
-    amenities: ['Community Pool', 'Clubhouse', 'Playground', 'Walking Trails', 'Security'],
-    amenities_ar: ['مسبح مشترك', 'نادي', 'ملعب أطفال', 'مسارات المشي', 'أمن'],
-    features: ['Private Garden', 'Double Garage', 'Maid Room', 'Storage'],
-    features_ar: ['حديقة خاصة', 'كراج مزدوج', 'غرفة خادمة', 'مخزن'],
+    amenities: ['Community Pool', 'Clubhouse', 'Playground', 'Walking Trails', 'Security', 'Private Garden', 'Double Garage'],
+    amenities_ar: ['مسبح مشترك', 'نادي', 'ملعب أطفال', 'مسارات المشي', 'أمن', 'حديقة خاصة', 'كراج مزدوج'],
+    features: [],
+    features_ar: [],
     created_at: '2023-08-10',
     updated_at: '2024-05-20',
   },
@@ -224,10 +222,10 @@ const mockProperties: Property[] = [
     status: 'upcoming',
     availability_summary: 'Pre-registration open',
     total_units: 200,
-    amenities: ['Rooftop Lounge', 'Business Center', 'Valet Parking', 'Retail Mall', 'Sky Gym'],
-    amenities_ar: ['صالة على السطح', 'مركز أعمال', 'خدمة صف السيارات', 'مول تجاري', 'صالة رياضية'],
-    features: ['City View', 'Floor-to-ceiling Glass', 'Smart Building', 'Green Certified'],
-    features_ar: ['إطلالة على المدينة', 'زجاج من الأرض للسقف', 'مبنى ذكي', 'شهادة خضراء'],
+    amenities: ['Rooftop Lounge', 'Business Center', 'Valet Parking', 'Retail Mall', 'Sky Gym', 'City View', 'Smart Building'],
+    amenities_ar: ['صالة على السطح', 'مركز أعمال', 'خدمة صف السيارات', 'مول تجاري', 'صالة رياضية', 'إطلالة على المدينة', 'مبنى ذكي'],
+    features: [],
+    features_ar: [],
     created_at: '2024-03-01',
     updated_at: '2024-06-15',
   },

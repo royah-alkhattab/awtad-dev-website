@@ -116,17 +116,18 @@ const PropertyDetails = () => {
             <h2 className="font-display text-2xl font-bold text-foreground mb-4">{t('Project Overview', 'نظرة عامة')}</h2>
             <p className="font-body text-base leading-relaxed text-muted-foreground">{desc}</p>
 
-            <h3 className="font-display text-xl font-semibold text-foreground mt-10 mb-4">{t('Amenities & Features', 'المرافق والمميزات')}</h3>
-            <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
-              {[
-                ...(language === 'en' ? property.amenities : property.amenities_ar),
-                ...(language === 'en' ? property.features : property.features_ar)
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-2 rounded-md bg-muted/50 px-4 py-3 font-body text-sm text-foreground">
-                  <CheckCircle2 size={14} className="shrink-0 text-primary" /> {item}
+            {(language === 'en' ? property.amenities : property.amenities_ar).length > 0 && (
+              <>
+                <h3 className="font-display text-xl font-semibold text-foreground mt-10 mb-4">{t('Amenities', 'المرافق')}</h3>
+                <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+                  {(language === 'en' ? property.amenities : property.amenities_ar).map((item, i) => (
+                    <div key={i} className="flex items-center gap-2 rounded-md bg-muted/50 px-4 py-3 font-body text-sm text-foreground">
+                      <CheckCircle2 size={14} className="shrink-0 text-primary" /> {item}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </>
+            )}
           </ScrollReveal>
 
           <ScrollReveal delay={0.2} className="lg:col-span-1">
