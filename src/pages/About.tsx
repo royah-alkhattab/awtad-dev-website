@@ -14,10 +14,7 @@ const About = () => {
   const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
   const team = [
-    { name: t('Ahmed Al-Said', 'أحمد السعيد'), role: t('Chairman & Founder', 'رئيس مجلس الإدارة والمؤسس') },
-    { name: t('Fatima Al-Rashdi', 'فاطمة الراشدي'), role: t('Chief Executive Officer', 'الرئيس التنفيذي') },
-    { name: t('Khalid Al-Habsi', 'خالد الحبسي'), role: t('Head of Development', 'رئيس قسم التطوير') },
-    { name: t('Sara Al-Balushi', 'سارة البلوشي'), role: t('Chief Financial Officer', 'المدير المالي') },
+    { name: t('Said Al Maawali', 'سعيد المعولي'), role: t('Chief Executive Officer', 'الرئيس التنفيذي') },
   ];
 
   return (
@@ -120,7 +117,7 @@ const About = () => {
               {t('Management Team', 'فريق الإدارة')}
             </h2>
           </ScrollReveal>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div className="flex justify-center">
             {team.map((member, i) => (
               <ScrollReveal key={i} delay={i * 0.1} className="text-center">
                 <div className="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-muted transition-transform duration-300 hover:scale-105">
