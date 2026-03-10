@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Award, Users, Target, Eye } from 'lucide-react';
 import ScrollReveal from '@/components/shared/ScrollReveal';
 import aboutHero from '@/assets/about-hero.jpg';
-import heroImg from '@/assets/hero-main.jpg';
+import heroImg from '@/assets/hero-main.jpeg';
 import { useRef } from 'react';
 
 const About = () => {
