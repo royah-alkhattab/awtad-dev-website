@@ -91,12 +91,12 @@ const About = () => {
               {t('Our Journey', 'مسيرتنا')}
             </p>
             <h2 className="font-display text-3xl font-bold text-foreground mb-6">
-              {t('15 Years of Shaping Skylines', '15 عامًا من تشكيل الأفق')}
+              {t('5 Years of Shaping Skylines', '5 أعوام من تشكيل الأفق')}
             </h2>
             <p className="font-body text-base leading-relaxed text-muted-foreground mb-4">
               {t(
-                'Founded in 2011, Awtad Development has grown from a visionary startup into one of the leading property developers in Oman. Our portfolio spans residential towers, luxury villas, and mixed-use developments across prime locations.',
-                'تأسست أوتاد للتطوير في عام 2011، ونمت من شركة ناشئة ذات رؤية إلى واحدة من أبرز شركات التطوير العقاري في عُمان.'
+                'Founded in 2021, Awtad Development has grown from a visionary startup into one of the leading property developers in Oman. Our portfolio spans residential towers, luxury villas, and mixed-use developments across prime locations.',
+                'تأسست أوتاد للتطوير في عام 2021، ونمت من شركة ناشئة ذات رؤية إلى واحدة من أبرز شركات التطوير العقاري في عُمان.'
               )}
             </p>
             <p className="font-body text-base leading-relaxed text-muted-foreground">
