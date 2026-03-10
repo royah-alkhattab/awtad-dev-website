@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
-import { MapPin, Phone, Mail } from 'lucide-react';
+import { MapPin, Phone } from 'lucide-react';
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -47,11 +47,7 @@ const Footer = () => {
                 <Phone size={14} className="shrink-0" />
                 +968 9559 9902
               </li>
-              <li className="flex items-center gap-2 opacity-80">
-                <Mail size={14} className="shrink-0" />
-                info@awtad.com
-              </li>
-            </ul>
+                          </ul>
           </div>
 
           {/* Newsletter */}

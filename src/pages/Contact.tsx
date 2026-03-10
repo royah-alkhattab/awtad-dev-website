@@ -1,7 +1,7 @@
 import { useLanguage } from '@/context/LanguageContext';
 import InterestForm from '@/components/shared/InterestForm';
 import ScrollReveal from '@/components/shared/ScrollReveal';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { MapPin, Phone, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Contact = () => {
@@ -10,8 +10,7 @@ const Contact = () => {
   const contactInfo = [
     { icon: <MapPin size={20} />, title: t('Visit Us', 'زورونا'), detail: t('Muscat, Oman', 'مسقط، عُمان') },
     { icon: <Phone size={20} />, title: t('Call Us', 'اتصل بنا'), detail: '+968 9559 9902' },
-    { icon: <Mail size={20} />, title: t('Email Us', 'راسلنا'), detail: 'info@awtad.com' },
-    { icon: <Clock size={20} />, title: t('Working Hours', 'ساعات العمل'), detail: t('Sun – Thu: 8AM – 5PM', 'الأحد – الخميس: 8ص – 5م') },
+        { icon: <Clock size={20} />, title: t('Working Hours', 'ساعات العمل'), detail: t('Sun – Thu: 8AM – 5PM', 'الأحد – الخميس: 8ص – 5م') },
   ];
 
   return (
