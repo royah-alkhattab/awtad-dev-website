@@ -32,7 +32,7 @@ const UnitStyleCard = ({ unit, onInterest, index }: Props) => {
     { icon: <Maximize size={18} />, label: t('Area', 'المساحة'), value: `${unit.area_sqm} ${t('sqm', 'م²')}`, show: unit.area_sqm > 0 },
     { icon: <BedDouble size={18} />, label: t('Bedrooms', 'غرف النوم'), value: unit.bedrooms, show: unit.bedrooms > 0 },
     { icon: <Bath size={18} />, label: t('Bathrooms', 'الحمامات'), value: unit.bathrooms, show: unit.bathrooms > 0 },
-    { icon: <UtensilsCrossed size={18} />, label: t('Kitchens', 'المطابخ'), value: unit.kitchens, show: unit.kitchens > 1 },
+    { icon: <UtensilsCrossed size={18} />, label: t('Kitchens', 'المطابخ'), value: unit.kitchens, show: unit.kitchens > 0 },
     { icon: <Gem size={18} />, label: t('Balconies', 'الشرفات'), value: unit.balconies, show: unit.balconies > 0 },
     { icon: <Waves size={18} />, label: t('Living Rooms', 'الصالات'), value: unit.living_rooms, show: unit.living_rooms > 0 },
     { icon: <Briefcase size={18} />, label: t('Working Rooms', 'غرف العمل'), value: unit.working_rooms, show: unit.working_rooms > 0 },
