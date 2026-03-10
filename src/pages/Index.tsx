@@ -6,7 +6,7 @@ import PropertyCard from '@/components/properties/PropertyCard';
 import ScrollReveal from '@/components/shared/ScrollReveal';
 import AnimatedCounter from '@/components/shared/AnimatedCounter';
 import { getProperties } from '@/services/api';
-import heroImg from '@/assets/hero-main.jpg';
+import heroImg from '@/assets/hero-main.jpeg';
 import property1 from '@/assets/property-1.jpg';
 import aboutImg from '@/assets/about-awtad.jpeg';
 import type { Easing } from 'framer-motion';
