@@ -15,7 +15,9 @@ export interface Property {
   availability_summary: string;
   total_units: number;
   amenities: string[];
+  amenities_ar: string[];
   features: string[];
+  features_ar: string[];
   created_at: string;
   updated_at: string;
 }
@@ -38,9 +40,9 @@ export interface Unit {
   balconies: number;
   living_rooms: number;
   floor: string;
-  maid_room: boolean;
-  laundry_room: boolean;
   extra_features: string[];
+  total_units?: number;
+  available_units?: number;
   created_at: string;
   updated_at: string;
 }

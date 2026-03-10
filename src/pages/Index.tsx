@@ -5,11 +5,12 @@ import { ArrowRight, Building2, Users, Award, MapPin, Shield, TrendingUp, Gem, C
 import PropertyCard from '@/components/properties/PropertyCard';
 import ScrollReveal from '@/components/shared/ScrollReveal';
 import AnimatedCounter from '@/components/shared/AnimatedCounter';
-import { mockProperties } from '@/services/api';
+import { getProperties } from '@/services/api';
 import heroImg from '@/assets/hero-main.jpg';
 import property1 from '@/assets/property-1.jpg';
 import type { Easing } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
+import type { Property } from '@/types';
 
 const easeOut: Easing = [0, 0, 0.2, 1];
 
@@ -28,6 +29,16 @@ const Index = () => {
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
   const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
+  const [properties, setProperties] = useState<Property[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getProperties().then((data) => {
+      setProperties(data);
+      setLoading(false);
+    });
+  }, []);
 
   const stats = [
     { value: '15', label: t('Years of Excellence', 'عاماً من التميز'), suffix: '+' },
@@ -52,15 +63,15 @@ const Index = () => {
   return (
     <>
       {/* ─── HERO ─── */}
-      <section ref={heroRef} className="relative h-screen min-h-[700px] flex items-end pb-24 overflow-hidden">
+      <section ref={heroRef} className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
         <motion.div className="absolute inset-0" style={{ scale: heroScale }}>
           <img src={heroImg} alt="Premium development" className="h-full w-full object-cover" />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-transparent" />
         <div className="absolute inset-0 bg-charcoal/20" />
         <motion.div className="container-premium relative z-10" style={{ opacity: heroOpacity }}>
-          <motion.div initial="hidden" animate="visible" className="max-w-3xl">
-            <motion.div variants={fadeUp} custom={0} className="mb-8 h-px w-16 bg-gradient-gold" />
+          <motion.div initial="hidden" animate="visible" className="max-w-5xl text-center mx-auto">
+            <motion.div variants={fadeUp} custom={0} className="mb-8 h-px w-16 bg-gradient-gold mx-auto" />
             <motion.p variants={fadeUp} custom={0} className="mb-5 font-body text-xs font-semibold uppercase tracking-[0.35em] text-gold-light">
               {t('Defining Luxury Living in Oman', 'نعيد تعريف الحياة الفاخرة في عُمان')}
             </motion.p>
@@ -69,13 +80,13 @@ const Index = () => {
               <span className="text-gradient-gold">{t('Landmarks', 'معالم')}</span><br />
               {t('of Tomorrow', 'الغد')}
             </motion.h1>
-            <motion.p variants={fadeUp} custom={2} className="mt-7 max-w-xl font-body text-base leading-relaxed text-cream/70 md:text-lg">
+            <motion.p variants={fadeUp} custom={2} className="mt-7 max-w-xl mx-auto font-body text-base leading-relaxed text-cream/70 md:text-lg">
               {t(
                 'Premium developments combining world-class design, strategic locations, and enduring value across the Sultanate of Oman.',
                 'مشاريع فاخرة تجمع بين التصميم العالمي والمواقع الاستراتيجية والقيمة الدائمة في سلطنة عُمان.'
               )}
             </motion.p>
-            <motion.div variants={fadeUp} custom={3} className="mt-10 flex flex-wrap gap-4">
+            <motion.div variants={fadeUp} custom={3} className="mt-10 flex flex-wrap gap-4 justify-center">
               <Link to="/properties" className="group inline-flex items-center gap-3 rounded-sm bg-gradient-gold px-8 py-4 font-body text-sm font-semibold tracking-wide text-primary-foreground transition-all hover:shadow-lg hover:shadow-gold/20">
                 {t('Explore Our Projects', 'استكشف مشاريعنا')}
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" />
@@ -115,11 +126,15 @@ const Index = () => {
             </Link>
           </ScrollReveal>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {mockProperties.map((p, i) => (
-              <ScrollReveal key={p.id} delay={i * 0.1}>
-                <PropertyCard property={p} />
-              </ScrollReveal>
-            ))}
+            {loading ? (
+              <p className="text-muted-foreground">{t('Loading...', 'جاري التحميل...')}</p>
+            ) : (
+              properties.slice(0, 3).map((p, i) => (
+                <ScrollReveal key={p.id} delay={i * 0.1}>
+                  <PropertyCard property={p} />
+                </ScrollReveal>
+              ))
+            )}
           </div>
           <div className="mt-10 text-center md:hidden">
             <Link to="/properties" className="inline-flex items-center gap-2 rounded-sm bg-gradient-gold px-7 py-3.5 font-body text-sm font-semibold text-primary-foreground">

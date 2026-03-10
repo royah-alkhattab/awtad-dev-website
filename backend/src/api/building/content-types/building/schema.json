@@ -17,8 +17,7 @@
       "required": true
     },
     "name_ar": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "slug": {
       "type": "uid",
@@ -26,25 +25,21 @@
       "required": true
     },
     "description": {
-      "type": "text",
-      "required": true
+      "type": "text"
     },
     "description_ar": {
-      "type": "text",
-      "required": true
+      "type": "text"
     },
     "location": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "location_ar": {
       "type": "string"
     },
-    "status": {
+    "building_status": {
       "type": "enumeration",
       "enum": ["upcoming", "under_construction", "ready", "sold_out"],
-      "default": "upcoming",
-      "required": true
+      "default": "upcoming"
     },
     "featured": {
       "type": "boolean",
@@ -67,6 +62,22 @@
       "relation": "oneToMany",
       "target": "api::property.property",
       "mappedBy": "building"
+    },
+    "amenities": {
+      "type": "json",
+      "required": false
+    },
+    "amenities_ar": {
+      "type": "json",
+      "required": false
+    },
+    "features": {
+      "type": "json",
+      "required": false
+    },
+    "features_ar": {
+      "type": "json",
+      "required": false
     }
   }
 }

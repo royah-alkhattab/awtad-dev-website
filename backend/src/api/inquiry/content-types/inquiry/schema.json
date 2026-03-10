@@ -32,7 +32,7 @@
       "enum": ["email", "phone", "whatsapp"],
       "default": "email"
     },
-    "status": {
+    "inquiry_status": {
       "type": "enumeration",
       "enum": ["new", "contacted", "closed"],
       "default": "new"
@@ -46,11 +46,6 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::property.property"
-    },
-    "unit": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::unit.unit"
     }
   }
 }

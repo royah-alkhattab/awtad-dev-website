@@ -5,7 +5,7 @@
     "singularName": "property",
     "pluralName": "properties",
     "displayName": "Property",
-    "description": "Individual properties within buildings"
+    "description": "Unit types within buildings (e.g., Type-A 2BR, Type-B 3BR)"
   },
   "options": {
     "draftAndPublish": true
@@ -42,18 +42,35 @@
     "bathrooms": {
       "type": "integer"
     },
-    "status": {
+    "living_rooms": {
+      "type": "integer",
+      "default": 1
+    },
+    "balconies": {
+      "type": "integer",
+      "default": 0
+    },
+    "property_status": {
       "type": "enumeration",
       "enum": ["available", "reserved", "sold"],
       "default": "available"
     },
-    "type": {
+    "property_type": {
       "type": "enumeration",
       "enum": ["apartment", "villa", "penthouse", "studio", "townhouse", "commercial"],
       "required": true
     },
-    "floor": {
-      "type": "integer"
+    "floors": {
+      "type": "integer",
+      "default": 1
+    },
+    "total_units": {
+      "type": "integer",
+      "default": 0
+    },
+    "available_units": {
+      "type": "integer",
+      "default": 0
     },
     "image": {
       "type": "media",
@@ -81,12 +98,6 @@
       "relation": "manyToOne",
       "target": "api::building.building",
       "inversedBy": "properties"
-    },
-    "units": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::unit.unit",
-      "mappedBy": "property"
     }
   }
 }

@@ -118,7 +118,10 @@ const PropertyDetails = () => {
 
             <h3 className="font-display text-xl font-semibold text-foreground mt-10 mb-4">{t('Amenities & Features', 'المرافق والمميزات')}</h3>
             <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
-              {[...property.amenities, ...property.features].map((item, i) => (
+              {[
+                ...(language === 'en' ? property.amenities : property.amenities_ar),
+                ...(language === 'en' ? property.features : property.features_ar)
+              ].map((item, i) => (
                 <div key={i} className="flex items-center gap-2 rounded-md bg-muted/50 px-4 py-3 font-body text-sm text-foreground">
                   <CheckCircle2 size={14} className="shrink-0 text-primary" /> {item}
                 </div>

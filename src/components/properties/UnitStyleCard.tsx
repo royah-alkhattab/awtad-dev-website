@@ -1,5 +1,5 @@
 import { useLanguage } from '@/context/LanguageContext';
-import { BedDouble, Bath, Maximize, Building2, Check, X, Gem, Waves } from 'lucide-react';
+import { BedDouble, Bath, Maximize, Building2, Gem, Waves } from 'lucide-react';
 import type { Unit } from '@/types';
 import UnitImageGallery from './UnitImageGallery';
 
@@ -34,14 +34,10 @@ const UnitStyleCard = ({ unit, onInterest, index }: Props) => {
     { icon: <Bath size={18} />, label: t('Bathrooms', 'الحمامات'), value: unit.bathrooms },
     { icon: <Gem size={18} />, label: t('Balconies', 'الشرفات'), value: unit.balconies },
     { icon: <Waves size={18} />, label: t('Living Rooms', 'الصالات'), value: unit.living_rooms },
-    { icon: <Building2 size={18} />, label: t('Floor', 'الطابق'), value: unit.floor },
+    { icon: <Building2 size={18} />, label: t('Floors', 'الطوابق'), value: unit.floor || 1 },
   ];
 
-  const boolSpecs = [
-    { label: t("Maid's Room", 'غرفة خادمة'), value: unit.maid_room },
-    { label: t('Laundry Room', 'غرفة غسيل'), value: unit.laundry_room },
-  ];
-
+  
   return (
     <article className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
       <div className={`grid md:grid-cols-2 ${isEven ? 'md:direction-rtl' : ''}`}>
@@ -98,19 +94,7 @@ const UnitStyleCard = ({ unit, onInterest, index }: Props) => {
               </div>
             </div>
 
-            {/* ── Boolean specs ── */}
-            <div className="flex flex-wrap gap-x-6 gap-y-2 mb-6">
-              {boolSpecs.map((bs, i) => (
-                <div key={i} className="flex items-center gap-2 font-body text-sm text-muted-foreground">
-                  {bs.value
-                    ? <Check size={15} className="text-green-600" />
-                    : <X size={15} className="text-muted-foreground/50" />
-                  }
-                  <span className={bs.value ? 'text-foreground font-medium' : ''}>{bs.label}</span>
-                </div>
-              ))}
-            </div>
-
+            
             {/* ── Extra features ── */}
             {unit.extra_features.length > 0 && (
               <div className="mb-8">

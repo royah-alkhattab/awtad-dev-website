@@ -442,12 +442,20 @@ export interface ApiBuildingBuilding extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    amenities: Schema.Attribute.JSON;
+    amenities_ar: Schema.Attribute.JSON;
+    building_status: Schema.Attribute.Enumeration<
+      ['upcoming', 'under_construction', 'ready', 'sold_out']
+    > &
+      Schema.Attribute.DefaultTo<'upcoming'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text & Schema.Attribute.Required;
-    description_ar: Schema.Attribute.Text & Schema.Attribute.Required;
+    description: Schema.Attribute.Text;
+    description_ar: Schema.Attribute.Text;
     featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    features: Schema.Attribute.JSON;
+    features_ar: Schema.Attribute.JSON;
     gallery: Schema.Attribute.Media<'images', true>;
     image: Schema.Attribute.Media<'images'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -456,21 +464,16 @@ export interface ApiBuildingBuilding extends Struct.CollectionTypeSchema {
       'api::building.building'
     > &
       Schema.Attribute.Private;
-    location: Schema.Attribute.String & Schema.Attribute.Required;
+    location: Schema.Attribute.String;
     location_ar: Schema.Attribute.String;
     name: Schema.Attribute.String & Schema.Attribute.Required;
-    name_ar: Schema.Attribute.String & Schema.Attribute.Required;
+    name_ar: Schema.Attribute.String;
     properties: Schema.Attribute.Relation<
       'oneToMany',
       'api::property.property'
     >;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
-    status: Schema.Attribute.Enumeration<
-      ['upcoming', 'under_construction', 'ready', 'sold_out']
-    > &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'upcoming'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -494,6 +497,10 @@ export interface ApiInquiryInquiry extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     email: Schema.Attribute.Email & Schema.Attribute.Required;
+    inquiry_status: Schema.Attribute.Enumeration<
+      ['new', 'contacted', 'closed']
+    > &
+      Schema.Attribute.DefaultTo<'new'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -509,9 +516,6 @@ export interface ApiInquiryInquiry extends Struct.CollectionTypeSchema {
       Schema.Attribute.DefaultTo<'email'>;
     property: Schema.Attribute.Relation<'manyToOne', 'api::property.property'>;
     publishedAt: Schema.Attribute.DateTime;
-    status: Schema.Attribute.Enumeration<['new', 'contacted', 'closed']> &
-      Schema.Attribute.DefaultTo<'new'>;
-    unit: Schema.Attribute.Relation<'manyToOne', 'api::unit.unit'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -521,7 +525,7 @@ export interface ApiInquiryInquiry extends Struct.CollectionTypeSchema {
 export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
   collectionName: 'properties';
   info: {
-    description: 'Individual properties within buildings';
+    description: 'Unit types within buildings (e.g., Type-A 2BR, Type-B 3BR)';
     displayName: 'Property';
     pluralName: 'properties';
     singularName: 'property';
@@ -532,6 +536,8 @@ export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
   attributes: {
     amenities: Schema.Attribute.JSON;
     area: Schema.Attribute.Decimal;
+    available_units: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    balconies: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     bathrooms: Schema.Attribute.Integer;
     bedrooms: Schema.Attribute.Integer;
     building: Schema.Attribute.Relation<'manyToOne', 'api::building.building'>;
@@ -540,10 +546,11 @@ export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
     description_ar: Schema.Attribute.Text;
-    floor: Schema.Attribute.Integer;
     floorplan: Schema.Attribute.Media<'images'>;
+    floors: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<1>;
     gallery: Schema.Attribute.Media<'images', true>;
     image: Schema.Attribute.Media<'images'>;
+    living_rooms: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<1>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -553,54 +560,17 @@ export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
     name: Schema.Attribute.String & Schema.Attribute.Required;
     name_ar: Schema.Attribute.String;
     price: Schema.Attribute.Decimal;
-    publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
-    status: Schema.Attribute.Enumeration<['available', 'reserved', 'sold']> &
+    property_status: Schema.Attribute.Enumeration<
+      ['available', 'reserved', 'sold']
+    > &
       Schema.Attribute.DefaultTo<'available'>;
-    type: Schema.Attribute.Enumeration<
+    property_type: Schema.Attribute.Enumeration<
       ['apartment', 'villa', 'penthouse', 'studio', 'townhouse', 'commercial']
     > &
       Schema.Attribute.Required;
-    units: Schema.Attribute.Relation<'oneToMany', 'api::unit.unit'>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiUnitUnit extends Struct.CollectionTypeSchema {
-  collectionName: 'units';
-  info: {
-    description: 'Individual units within properties';
-    displayName: 'Unit';
-    pluralName: 'units';
-    singularName: 'unit';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    area: Schema.Attribute.Decimal;
-    bathrooms: Schema.Attribute.Integer;
-    bedrooms: Schema.Attribute.Integer;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    floor: Schema.Attribute.Integer;
-    floorplan: Schema.Attribute.Media<'images'>;
-    image: Schema.Attribute.Media<'images'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::unit.unit'> &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String & Schema.Attribute.Required;
-    name_ar: Schema.Attribute.String;
-    price: Schema.Attribute.Decimal;
-    property: Schema.Attribute.Relation<'manyToOne', 'api::property.property'>;
     publishedAt: Schema.Attribute.DateTime;
-    status: Schema.Attribute.Enumeration<['available', 'reserved', 'sold']> &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'available'>;
-    unit_number: Schema.Attribute.String & Schema.Attribute.Required;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    total_units: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1121,7 +1091,6 @@ declare module '@strapi/strapi' {
       'api::building.building': ApiBuildingBuilding;
       'api::inquiry.inquiry': ApiInquiryInquiry;
       'api::property.property': ApiPropertyProperty;
-      'api::unit.unit': ApiUnitUnit;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

@@ -31,11 +31,15 @@ interface StrapiBuilding {
   description_ar: string;
   location: string;
   location_ar: string;
-  status: 'upcoming' | 'under_construction' | 'ready' | 'sold_out';
+  building_status: 'upcoming' | 'under_construction' | 'ready' | 'sold_out';
   featured: boolean;
   image?: { url: string };
   gallery?: { url: string }[];
   properties?: StrapiProperty[];
+  amenities?: string[];
+  amenities_ar?: string[];
+  features?: string[];
+  features_ar?: string[];
   createdAt: string;
   updatedAt: string;
 }
@@ -52,9 +56,13 @@ interface StrapiProperty {
   area: number;
   bedrooms: number;
   bathrooms: number;
-  status: 'available' | 'reserved' | 'sold';
-  type: string;
-  floor: number;
+  property_status: 'available' | 'reserved' | 'sold';
+  property_type: string;
+  floors: number;
+  living_rooms: number;
+  balconies: number;
+  total_units: number;
+  available_units: number;
   image?: { url: string };
   gallery?: { url: string }[];
   floorplan?: { url: string };
@@ -75,7 +83,7 @@ interface StrapiUnit {
   bedrooms: number;
   bathrooms: number;
   floor: number;
-  status: 'available' | 'reserved' | 'sold';
+  unit_status: 'available' | 'reserved' | 'sold';
   image?: { url: string };
   floorplan?: { url: string };
   property?: StrapiProperty;
@@ -91,6 +99,11 @@ function getImageUrl(image?: { url: string }): string {
 }
 
 function mapBuildingToProperty(building: StrapiBuilding): Property {
+  // Calculate total and available units from all property types
+  const totalUnits = building.properties?.reduce((sum, p) => sum + (p.total_units || 0), 0) || 0;
+  const availableUnits = building.properties?.reduce((sum, p) => sum + (p.available_units || 0), 0) || 0;
+  const typeCount = building.properties?.length || 0;
+
   return {
     id: building.documentId || String(building.id),
     slug: building.slug,
@@ -104,11 +117,15 @@ function mapBuildingToProperty(building: StrapiBuilding): Property {
     gallery_images: building.gallery?.map(img => getImageUrl(img)) || [],
     location_en: building.location,
     location_ar: building.location_ar,
-    status: building.status,
-    availability_summary: `${building.properties?.length || 0} properties available`,
-    total_units: building.properties?.length || 0,
-    amenities: [],
-    features: [],
+    status: building.building_status || 'upcoming',
+    availability_summary: availableUnits > 0
+      ? `${availableUnits} units available`
+      : `${typeCount} types available`,
+    total_units: totalUnits || typeCount,
+    amenities: building.amenities || [],
+    amenities_ar: building.amenities_ar || [],
+    features: building.features || [],
+    features_ar: building.features_ar || [],
     created_at: building.createdAt,
     updated_at: building.updatedAt,
   };
@@ -124,7 +141,7 @@ function mapStrapiUnit(unit: StrapiUnit, propertyId: string): Unit {
     brochure_image: getImageUrl(unit.floorplan) || floorplan1,
     description_en: `${unit.bedrooms} bedroom unit with ${unit.area} sqm`,
     description_ar: `وحدة بـ ${unit.bedrooms} غرف نوم بمساحة ${unit.area} متر مربع`,
-    availability_status: unit.status,
+    availability_status: unit.unit_status || 'available',
     price_starting_from: unit.price,
     area_sqm: unit.area,
     bedrooms: unit.bedrooms,
@@ -132,9 +149,7 @@ function mapStrapiUnit(unit: StrapiUnit, propertyId: string): Unit {
     balconies: 1,
     living_rooms: 1,
     floor: String(unit.floor),
-    maid_room: false,
-    laundry_room: false,
-    extra_features: [],
+        extra_features: [],
     created_at: unit.createdAt,
     updated_at: unit.updatedAt,
   };
@@ -159,7 +174,9 @@ const mockProperties: Property[] = [
     availability_summary: '24 units available',
     total_units: 120,
     amenities: ['Swimming Pool', 'Gym', 'Private Beach', 'Concierge', 'Parking', 'Garden'],
+    amenities_ar: ['مسبح', 'صالة رياضية', 'شاطئ خاص', 'خدمة الكونسيرج', 'مواقف سيارات', 'حديقة'],
     features: ['Smart Home', 'Sea View', 'High Ceilings', 'Premium Finishes'],
+    features_ar: ['منزل ذكي', 'إطلالة بحرية', 'أسقف عالية', 'تشطيبات فاخرة'],
     created_at: '2024-01-15',
     updated_at: '2024-06-01',
   },
@@ -180,7 +197,9 @@ const mockProperties: Property[] = [
     availability_summary: '8 villas remaining',
     total_units: 45,
     amenities: ['Community Pool', 'Clubhouse', 'Playground', 'Walking Trails', 'Security'],
+    amenities_ar: ['مسبح مشترك', 'نادي', 'ملعب أطفال', 'مسارات المشي', 'أمن'],
     features: ['Private Garden', 'Double Garage', 'Maid Room', 'Storage'],
+    features_ar: ['حديقة خاصة', 'كراج مزدوج', 'غرفة خادمة', 'مخزن'],
     created_at: '2023-08-10',
     updated_at: '2024-05-20',
   },
@@ -201,7 +220,9 @@ const mockProperties: Property[] = [
     availability_summary: 'Pre-registration open',
     total_units: 200,
     amenities: ['Rooftop Lounge', 'Business Center', 'Valet Parking', 'Retail Mall', 'Sky Gym'],
+    amenities_ar: ['صالة على السطح', 'مركز أعمال', 'خدمة صف السيارات', 'مول تجاري', 'صالة رياضية'],
     features: ['City View', 'Floor-to-ceiling Glass', 'Smart Building', 'Green Certified'],
+    features_ar: ['إطلالة على المدينة', 'زجاج من الأرض للسقف', 'مبنى ذكي', 'شهادة خضراء'],
     created_at: '2024-03-01',
     updated_at: '2024-06-15',
   },
@@ -225,9 +246,7 @@ const mockUnits: Unit[] = [
     balconies: 1,
     living_rooms: 1,
     floor: '3-12',
-    maid_room: false,
-    laundry_room: false,
-    extra_features: ['Walk-in Closet', 'Built-in Kitchen'],
+        extra_features: ['Walk-in Closet', 'Built-in Kitchen'],
     created_at: '2024-01-15',
     updated_at: '2024-06-01',
   },
@@ -248,9 +267,7 @@ const mockUnits: Unit[] = [
     balconies: 1,
     living_rooms: 1,
     floor: '5-18',
-    maid_room: true,
-    laundry_room: true,
-    extra_features: ['Master En-suite', 'Storage Room', 'Utility Balcony'],
+        extra_features: ['Master En-suite', 'Storage Room', 'Utility Balcony'],
     created_at: '2024-01-15',
     updated_at: '2024-06-01',
   },
@@ -271,9 +288,7 @@ const mockUnits: Unit[] = [
     balconies: 2,
     living_rooms: 2,
     floor: '19-20',
-    maid_room: true,
-    laundry_room: true,
-    extra_features: ['Private Terrace', 'Jacuzzi', 'Double Parking', 'Private Elevator'],
+        extra_features: ['Private Terrace', 'Jacuzzi', 'Double Parking', 'Private Elevator'],
     created_at: '2024-01-15',
     updated_at: '2024-06-01',
   },
@@ -294,9 +309,7 @@ const mockUnits: Unit[] = [
     balconies: 2,
     living_rooms: 2,
     floor: 'G+1',
-    maid_room: true,
-    laundry_room: true,
-    extra_features: ['Private Garden', 'Double Garage', 'Majlis', 'Storage'],
+        extra_features: ['Private Garden', 'Double Garage', 'Majlis', 'Storage'],
     created_at: '2023-08-10',
     updated_at: '2024-05-20',
   },
@@ -336,38 +349,78 @@ export async function getPropertyBySlug(slug: string): Promise<Property | undefi
   return mockProperties.find((p) => p.slug === slug);
 }
 
-export async function getUnitsByProperty(propertyId: string): Promise<Unit[]> {
+export async function getUnitsByProperty(buildingId: string): Promise<Unit[]> {
   try {
-    const res = await fetch(`${API_BASE_URL}/units?filters[property][documentId][$eq]=${propertyId}&populate=*`);
+    // Fetch property types from the building
+    const res = await fetch(`${API_BASE_URL}/properties?filters[building][documentId][$eq]=${buildingId}&populate=*`);
     if (res.ok) {
-      const json: StrapiResponse<StrapiUnit[]> = await res.json();
-      return json.data.map(unit => mapStrapiUnit(unit, propertyId));
+      const json: StrapiResponse<StrapiProperty[]> = await res.json();
+      return json.data.map(prop => mapPropertyToUnit(prop, buildingId));
     }
   } catch (error) {
     console.log('Using mock data - Strapi not available');
   }
   await delay(300);
-  return mockUnits.filter((u) => u.property_id === propertyId);
+  return mockUnits.filter((u) => u.property_id === buildingId);
+}
+
+function mapPropertyToUnit(prop: StrapiProperty, buildingId: string): Unit {
+  return {
+    id: prop.documentId || String(prop.id),
+    property_id: buildingId,
+    title_en: prop.name,
+    title_ar: prop.name_ar || prop.name,
+    style_code: prop.property_type?.toUpperCase() || 'TYPE',
+    brochure_image: getImageUrl(prop.floorplan || prop.image),
+    description_en: prop.description || `${prop.bedrooms} bedroom ${prop.property_type} with ${prop.area} sqm`,
+    description_ar: prop.description_ar || `${prop.property_type} بـ ${prop.bedrooms} غرف نوم بمساحة ${prop.area} متر مربع`,
+    availability_status: prop.property_status || 'available',
+    price_starting_from: prop.price || 0,
+    area_sqm: prop.area || 0,
+    bedrooms: prop.bedrooms || 0,
+    bathrooms: prop.bathrooms || 0,
+    balconies: prop.balconies || 0,
+    living_rooms: prop.living_rooms || 1,
+    floor: prop.floors ? String(prop.floors) : '1',
+        extra_features: [],
+    total_units: prop.total_units || 0,
+    available_units: prop.available_units || 0,
+    created_at: prop.createdAt,
+    updated_at: prop.updatedAt,
+  };
 }
 
 export async function submitInterestForm(inquiry: Inquiry): Promise<{ success: boolean }> {
   try {
+    // Build the data object with relations
+    const data: Record<string, unknown> = {
+      name: inquiry.full_name,
+      email: inquiry.email,
+      phone: inquiry.phone,
+      message: inquiry.message || '',
+      preferred_contact: inquiry.preferred_contact_method,
+    };
+
+    // Add building relation if provided (property_id = building's documentId)
+    if (inquiry.property_id) {
+      data.building = { connect: [{ documentId: inquiry.property_id }] };
+    }
+
+    // Add property relation if provided (unit_id = property type's documentId)
+    if (inquiry.unit_id) {
+      data.property = { connect: [{ documentId: inquiry.unit_id }] };
+    }
+
     const res = await fetch(`${API_BASE_URL}/inquiries`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        data: {
-          name: inquiry.name,
-          email: inquiry.email,
-          phone: inquiry.phone,
-          message: inquiry.message,
-          preferred_contact: inquiry.preferred_contact,
-        }
-      }),
+      body: JSON.stringify({ data }),
     });
     if (res.ok) {
       return { success: true };
     }
+    const errorData = await res.json();
+    console.error('Inquiry submission failed:', errorData);
   } catch (error) {
     console.log('Using mock submission - Strapi not available');
   }
