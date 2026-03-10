@@ -4,7 +4,7 @@
   "info": {
     "singularName": "property",
     "pluralName": "properties",
-    "displayName": "Property",
+    "displayName": "Property Type",
     "description": "Unit types within buildings (e.g., Type-A 2BR, Type-B 3BR)"
   },
   "options": {
@@ -37,14 +37,16 @@
       "type": "decimal"
     },
     "bedrooms": {
-      "type": "integer"
+      "type": "integer",
+      "default": 0
     },
     "bathrooms": {
-      "type": "integer"
+      "type": "integer",
+      "default": 0
     },
     "living_rooms": {
       "type": "integer",
-      "default": 1
+      "default": 0
     },
     "balconies": {
       "type": "integer",
@@ -54,7 +56,19 @@
       "type": "integer",
       "default": 0
     },
+    "floors": {
+      "type": "integer",
+      "default": 1
+    },
     "display_order": {
+      "type": "integer",
+      "default": 0
+    },
+    "total_units": {
+      "type": "integer",
+      "default": 0
+    },
+    "available_units": {
       "type": "integer",
       "default": 0
     },
@@ -67,18 +81,6 @@
       "type": "enumeration",
       "enum": ["apartment", "villa", "penthouse", "studio", "townhouse", "commercial"],
       "required": true
-    },
-    "floors": {
-      "type": "integer",
-      "default": 1
-    },
-    "total_units": {
-      "type": "integer",
-      "default": 0
-    },
-    "available_units": {
-      "type": "integer",
-      "default": 0
     },
     "image": {
       "type": "media",
@@ -98,7 +100,10 @@
       "required": false,
       "allowedTypes": ["images"]
     },
-    "amenities": {
+    "extra_features": {
+      "type": "json"
+    },
+    "extra_features_ar": {
       "type": "json"
     },
     "building": {

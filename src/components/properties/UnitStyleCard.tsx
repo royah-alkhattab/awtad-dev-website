@@ -99,13 +99,13 @@ const UnitStyleCard = ({ unit, onInterest, index }: Props) => {
 
             
             {/* ── Extra features ── */}
-            {unit.extra_features.length > 0 && (
+            {((language === 'en' ? unit.extra_features : unit.extra_features_ar) || []).length > 0 && (
               <div className="mb-8">
                 <h4 className="font-body text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-3">
                   {t('Additional Features', 'ميزات إضافية')}
                 </h4>
                 <div className="flex flex-wrap gap-2">
-                  {unit.extra_features.map((feat, i) => (
+                  {(language === 'en' ? unit.extra_features : unit.extra_features_ar).map((feat, i) => (
                     <span key={i} className="rounded-full border border-border bg-muted/50 px-3 py-1 font-body text-xs text-foreground">
                       {feat}
                     </span>

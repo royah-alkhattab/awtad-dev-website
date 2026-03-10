@@ -451,8 +451,18 @@ export interface ApiBuildingBuilding extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    description_ar: Schema.Attribute.Text;
+    description: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    description_ar: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     features: Schema.Attribute.JSON;
     features_ar: Schema.Attribute.JSON;
@@ -464,10 +474,31 @@ export interface ApiBuildingBuilding extends Struct.CollectionTypeSchema {
       'api::building.building'
     > &
       Schema.Attribute.Private;
-    location: Schema.Attribute.String;
-    location_ar: Schema.Attribute.String;
-    name: Schema.Attribute.String & Schema.Attribute.Required;
-    name_ar: Schema.Attribute.String;
+    location: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    location_ar: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    name_ar: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     properties: Schema.Attribute.Relation<
       'oneToMany',
       'api::property.property'
@@ -526,7 +557,7 @@ export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
   collectionName: 'properties';
   info: {
     description: 'Unit types within buildings (e.g., Type-A 2BR, Type-B 3BR)';
-    displayName: 'Property';
+    displayName: 'Property Type';
     pluralName: 'properties';
     singularName: 'property';
   };
@@ -534,12 +565,11 @@ export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    amenities: Schema.Attribute.JSON;
     area: Schema.Attribute.Decimal;
     available_units: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     balconies: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
-    bathrooms: Schema.Attribute.Integer;
-    bedrooms: Schema.Attribute.Integer;
+    bathrooms: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    bedrooms: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     building: Schema.Attribute.Relation<'manyToOne', 'api::building.building'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -547,11 +577,13 @@ export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
     description: Schema.Attribute.Text;
     description_ar: Schema.Attribute.Text;
     display_order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    extra_features: Schema.Attribute.JSON;
+    extra_features_ar: Schema.Attribute.JSON;
     floorplan: Schema.Attribute.Media<'images'>;
     floors: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<1>;
     gallery: Schema.Attribute.Media<'images', true>;
     image: Schema.Attribute.Media<'images'>;
-    living_rooms: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<1>;
+    living_rooms: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

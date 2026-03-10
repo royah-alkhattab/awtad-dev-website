@@ -63,6 +63,8 @@ interface StrapiProperty {
   balconies: number;
   working_rooms: number;
   display_order: number;
+  extra_features?: string[];
+  extra_features_ar?: string[];
   total_units: number;
   available_units: number;
   image?: { url: string };
@@ -251,6 +253,7 @@ const mockUnits: Unit[] = [
     working_rooms: 0,
     floor: '3-12',
     extra_features: ['Walk-in Closet', 'Built-in Kitchen'],
+    extra_features_ar: ['خزانة ملابس', 'مطبخ مدمج'],
     created_at: '2024-01-15',
     updated_at: '2024-06-01',
   },
@@ -273,6 +276,7 @@ const mockUnits: Unit[] = [
     working_rooms: 1,
     floor: '5-18',
     extra_features: ['Master En-suite', 'Storage Room', 'Utility Balcony'],
+    extra_features_ar: ['حمام رئيسي', 'غرفة تخزين', 'شرفة خدمات'],
     created_at: '2024-01-15',
     updated_at: '2024-06-01',
   },
@@ -295,6 +299,7 @@ const mockUnits: Unit[] = [
     working_rooms: 1,
     floor: '19-20',
     extra_features: ['Private Terrace', 'Jacuzzi', 'Double Parking', 'Private Elevator'],
+    extra_features_ar: ['تراس خاص', 'جاكوزي', 'موقفين سيارات', 'مصعد خاص'],
     created_at: '2024-01-15',
     updated_at: '2024-06-01',
   },
@@ -317,6 +322,7 @@ const mockUnits: Unit[] = [
     working_rooms: 1,
     floor: 'G+1',
     extra_features: ['Private Garden', 'Double Garage', 'Majlis', 'Storage'],
+    extra_features_ar: ['حديقة خاصة', 'كراج مزدوج', 'مجلس', 'مخزن'],
     created_at: '2023-08-10',
     updated_at: '2024-05-20',
   },
@@ -390,7 +396,8 @@ function mapPropertyToUnit(prop: StrapiProperty, buildingId: string): Unit {
     living_rooms: prop.living_rooms || 1,
     working_rooms: prop.working_rooms || 0,
     floor: prop.floors ? String(prop.floors) : '1',
-        extra_features: [],
+    extra_features: prop.extra_features || [],
+    extra_features_ar: prop.extra_features_ar || [],
     total_units: prop.total_units || 0,
     available_units: prop.available_units || 0,
     created_at: prop.createdAt,

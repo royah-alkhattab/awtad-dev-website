@@ -14,10 +14,16 @@
   "attributes": {
     "name": {
       "type": "string",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": { "localized": false }
+      }
     },
     "name_ar": {
-      "type": "string"
+      "type": "string",
+      "pluginOptions": {
+        "i18n": { "localized": false }
+      }
     },
     "slug": {
       "type": "uid",
@@ -25,16 +31,28 @@
       "required": true
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "pluginOptions": {
+        "i18n": { "localized": false }
+      }
     },
     "description_ar": {
-      "type": "text"
+      "type": "text",
+      "pluginOptions": {
+        "i18n": { "localized": false }
+      }
     },
     "location": {
-      "type": "string"
+      "type": "string",
+      "pluginOptions": {
+        "i18n": { "localized": false }
+      }
     },
     "location_ar": {
-      "type": "string"
+      "type": "string",
+      "pluginOptions": {
+        "i18n": { "localized": false }
+      }
     },
     "building_status": {
       "type": "enumeration",

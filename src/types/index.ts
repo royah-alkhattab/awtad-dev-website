@@ -42,6 +42,7 @@ export interface Unit {
   working_rooms: number;
   floor: string;
   extra_features: string[];
+  extra_features_ar: string[];
   total_units?: number;
   available_units?: number;
   created_at: string;
