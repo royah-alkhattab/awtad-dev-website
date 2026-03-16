@@ -25,8 +25,8 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-lg">
       <div className="container-premium flex h-20 items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="font-display text-2xl font-bold tracking-tight text-foreground">
-          <span className="text-gradient-gold">AWTAD</span>
+        <Link to="/" className="flex items-center">
+          <img src="/logo.png" alt="AWTAD" className="h-16 w-auto" />
         </Link>
 
         {/* Desktop Nav */}

@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="grid gap-12 md:grid-cols-4">
           {/* Brand */}
           <div className="md:col-span-1">
-            <h3 className="font-display text-2xl font-bold text-gradient-gold mb-4">AWTAD</h3>
+            <img src="/logo.png" alt="AWTAD" className="h-20 w-auto mb-4" />
             <p className="font-body text-sm leading-relaxed opacity-80">
               {t(
                 'Building landmarks that define the future of luxury living.',
