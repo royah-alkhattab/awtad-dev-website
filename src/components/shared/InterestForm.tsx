@@ -92,6 +92,7 @@ const InterestForm = ({ inquiryType, propertyId, unitId, propertyName, unitName,
         />
         <input
           type="tel"
+          dir="auto"
           placeholder={t('Phone Number *', 'رقم الهاتف *')}
           value={form.phone}
           onChange={(e) => setForm({ ...form, phone: e.target.value })}
@@ -103,6 +104,7 @@ const InterestForm = ({ inquiryType, propertyId, unitId, propertyName, unitName,
 
       <input
         type="email"
+        dir="auto"
         placeholder={t('Email Address *', 'البريد الإلكتروني *')}
         value={form.email}
         onChange={(e) => setForm({ ...form, email: e.target.value })}
