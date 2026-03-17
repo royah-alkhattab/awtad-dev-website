@@ -39,13 +39,15 @@ const Footer = () => {
               {t('Contact Us', 'تواصل معنا')}
             </h4>
             <ul className="space-y-3 font-body text-sm">
-              <li className="flex items-center gap-2 opacity-80">
+              <li className="flex items-center gap-2 opacity-80 transition-opacity hover:opacity-100">
                 <MapPin size={14} className="shrink-0" />
-                {t('Muscat, Oman', 'مسقط، عُمان')}
+                <a href="https://maps.app.goo.gl/fDGkevP6VkFa3WRN8" target="_blank" rel="noopener noreferrer">
+                  {t('Muscat, Oman', 'مسقط، عُمان')}
+                </a>
               </li>
-              <li className="flex items-center gap-2 opacity-80">
+              <li className="flex items-center gap-2 opacity-80 transition-opacity hover:opacity-100">
                 <Phone size={14} className="shrink-0" />
-                <span dir="ltr">+968 9559 9902</span>
+                <a href="tel:+96895599902" dir="ltr">+968 9559 9902</a>
               </li>
                           </ul>
           </div>
