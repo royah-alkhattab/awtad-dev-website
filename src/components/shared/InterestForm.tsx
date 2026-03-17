@@ -23,7 +23,7 @@ const schema = z.object({
 });
 
 const InterestForm = ({ inquiryType, propertyId, unitId, propertyName, unitName, onClose }: Props) => {
-  const { t } = useLanguage();
+  const { t, dir } = useLanguage();
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState<{
     full_name: string;
@@ -92,7 +92,7 @@ const InterestForm = ({ inquiryType, propertyId, unitId, propertyName, unitName,
         />
         <input
           type="tel"
-          dir="auto"
+          dir={dir}
           placeholder={t('Phone Number *', 'رقم الهاتف *')}
           value={form.phone}
           onChange={(e) => setForm({ ...form, phone: e.target.value })}
@@ -104,7 +104,7 @@ const InterestForm = ({ inquiryType, propertyId, unitId, propertyName, unitName,
 
       <input
         type="email"
-        dir="auto"
+        dir={dir}
         placeholder={t('Email Address *', 'البريد الإلكتروني *')}
         value={form.email}
         onChange={(e) => setForm({ ...form, email: e.target.value })}
