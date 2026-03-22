@@ -8,9 +8,9 @@ const Contact = () => {
   const { t } = useLanguage();
 
   const contactInfo = [
-    { icon: <MapPin size={20} />, title: t('Visit Us', 'زورونا'), detail: t('Muscat, Oman', 'مسقط، عُمان') },
-    { icon: <Phone size={20} />, title: t('Call Us', 'اتصل بنا'), detail: <span dir="ltr">+968 9559 9902</span> },
-        { icon: <Clock size={20} />, title: t('Working Hours', 'ساعات العمل'), detail: t('Sun – Thu: 8AM – 5PM', 'الأحد – الخميس: 8ص – 5م') },
+    { icon: <MapPin size={20} />, title: t('Visit Us', 'زورونا'), detail: <a href="https://maps.app.goo.gl/fDGkevP6VkFa3WRN8" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">{t('18th November St, Muscat, Oman', 'شارع ١٨ نوفمبر، مسقط، عُمان')}</a> },
+    { icon: <Phone size={20} />, title: t('Call Us', 'اتصل بنا'), detail: <a href="tel:+96895599902" dir="ltr" className="hover:text-foreground transition-colors">+968 9559 9902</a> },
+    { icon: <Clock size={20} />, title: t('Office Hours', 'ساعات الدوام'), detail: t('Sun – Thu: 8AM – 6PM', 'الأحد – الخميس: 8ص – 6م') },
   ];
 
   return (
@@ -46,8 +46,8 @@ const Contact = () => {
             </h2>
             <p className="font-body text-base text-muted-foreground leading-relaxed mb-8">
               {t(
-                'Whether you have a question about our properties, need more information, or want to schedule a viewing, our team is here to help.',
-                'سواء كان لديك سؤال عن مشاريعنا أو تحتاج معلومات إضافية أو ترغب في حجز زيارة، فريقنا هنا لمساعدتك.'
+                'Whether you have a question about our properties, need more information, or want to schedule an appointment, our team is here to help.',
+                'سواء كان لديك سؤال عن مشاريعنا أو تحتاج معلومات إضافية أو ترغب في حجز موعد، فريقنا هنا لمساعدتك.'
               )}
             </p>
             <div className="space-y-6">
