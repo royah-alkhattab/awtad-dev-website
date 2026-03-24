@@ -1,20 +1,7 @@
 import type { Core } from '@strapi/strapi';
 
 const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin => ({
-  upload: {
-    config: {
-      provider: '@strapi/provider-upload-cloudinary',
-      providerOptions: {
-        cloud_name: env('CLOUDINARY_NAME'),
-        api_key: env('CLOUDINARY_KEY'),
-        api_secret: env('CLOUDINARY_SECRET'),
-      },
-      actionOptions: {
-        upload: {},
-        delete: {},
-      },
-    },
-  },
+  // Using default local provider with Railway Volume for persistent storage
 });
 
 export default config;
