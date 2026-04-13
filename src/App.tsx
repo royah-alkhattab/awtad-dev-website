@@ -8,6 +8,7 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import { AnimatePresence } from "framer-motion";
 import Layout from "@/components/layout/Layout";
 import PageTransition from "@/components/shared/PageTransition";
+import NavigationProgress from "@/components/shared/NavigationProgress";
 import Index from "./pages/Index";
 import Properties from "./pages/Properties";
 import PropertyDetails from "./pages/PropertyDetails";
@@ -48,6 +49,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <NavigationProgress />
           <Layout>
             <AnimatedRoutes />
           </Layout>

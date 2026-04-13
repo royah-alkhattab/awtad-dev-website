@@ -9,6 +9,7 @@ import ScrollReveal from '@/components/shared/ScrollReveal';
 import type { Property, Unit } from '@/types';
 import { MapPin, Building2, Calendar, ArrowLeft, X, CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { PropertyDetailsSkeleton } from '@/components/shared/PageSkeleton';
 
 const PropertyDetails = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -36,11 +37,7 @@ const PropertyDetails = () => {
   }, [slug]);
 
   if (loading) {
-    return (
-      <div className="flex min-h-[60vh] items-center justify-center">
-        <div className="h-10 w-10 animate-spin rounded-full border-4 border-primary border-t-transparent" />
-      </div>
-    );
+    return <PropertyDetailsSkeleton />;
   }
 
   if (!property) {

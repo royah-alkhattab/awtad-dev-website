@@ -6,6 +6,7 @@ import { getProperties } from '@/services/api';
 import type { Property } from '@/types';
 import { Search, SlidersHorizontal } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { PropertiesGridSkeleton } from '@/components/shared/PageSkeleton';
 
 const Properties = () => {
   const { t, language } = useLanguage();
@@ -124,11 +125,7 @@ const Properties = () => {
       <section className="section-padding">
         <div className="container-premium">
           {loading ? (
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="animate-pulse rounded-lg bg-muted aspect-[4/5]" />
-              ))}
-            </div>
+            <PropertiesGridSkeleton />
           ) : filtered.length === 0 ? (
             <div className="py-20 text-center">
               <p className="font-body text-lg text-muted-foreground">
