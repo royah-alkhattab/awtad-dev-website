@@ -10,9 +10,9 @@ interface Props {
 }
 
 const availColors: Record<string, string> = {
-  available: 'bg-green-50 text-green-800 border-green-300',
-  reserved: 'bg-amber-50 text-amber-800 border-amber-300',
-  sold: 'bg-muted text-muted-foreground border-border',
+  available: 'bg-green-50 text-green-800',
+  reserved: 'bg-amber-50 text-amber-800',
+  sold: 'bg-muted text-muted-foreground',
 };
 
 const availLabels: Record<string, { en: string; ar: string }> = {
@@ -41,12 +41,11 @@ const UnitStyleCard = ({ unit, onInterest, index }: Props) => {
 
   const specs = allSpecs.filter(spec => spec.show);
 
-  
   return (
-    <article className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
+    <article className="overflow-hidden rounded-card border border-border/60 bg-card shadow-card">
       <div className={`grid md:grid-cols-2 ${isEven ? 'md:direction-rtl' : ''}`}>
         {/* ── Image Panel ── */}
-        <div className="group/img relative min-h-[340px] md:min-h-[520px] overflow-hidden">
+        <div className="group/img relative min-h-[340px] md:min-h-[520px] overflow-hidden m-3 rounded-card-inner">
           <UnitImageGallery
             images={unit.gallery_images?.length ? unit.gallery_images : [unit.brochure_image]}
             alt={title}
@@ -59,7 +58,7 @@ const UnitStyleCard = ({ unit, onInterest, index }: Props) => {
           <div>
             {/* Availability badge */}
             <span
-              className={`mb-5 inline-flex items-center gap-1.5 rounded-full border px-4 py-1.5 font-body text-xs font-bold uppercase tracking-wider ${availColors[unit.availability_status]}`}
+              className={`mb-5 inline-flex items-center gap-1.5 rounded-pill px-4 py-1.5 font-body text-xs font-bold uppercase tracking-wider ${availColors[unit.availability_status]}`}
             >
               <span className={`inline-block h-2 w-2 rounded-full ${
                 unit.availability_status === 'available' ? 'bg-green-500' :
@@ -86,7 +85,7 @@ const UnitStyleCard = ({ unit, onInterest, index }: Props) => {
               <div className="grid grid-cols-2 gap-x-6 gap-y-4">
                 {specs.map((spec, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-muted text-primary">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-card-inner bg-muted text-primary">
                       {spec.icon}
                     </span>
                     <div className="min-w-0">
@@ -98,7 +97,6 @@ const UnitStyleCard = ({ unit, onInterest, index }: Props) => {
               </div>
             </div>
 
-            
             {/* ── Extra features ── */}
             {((language === 'en' ? unit.extra_features : unit.extra_features_ar) || []).length > 0 && (
               <div className="mb-8">
@@ -107,7 +105,7 @@ const UnitStyleCard = ({ unit, onInterest, index }: Props) => {
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {(language === 'en' ? unit.extra_features : unit.extra_features_ar).map((feat, i) => (
-                    <span key={i} className="rounded-full border border-border bg-muted/50 px-3 py-1 font-body text-xs text-foreground">
+                    <span key={i} className="rounded-pill border border-border bg-muted/50 px-4 py-1.5 font-body text-xs text-foreground">
                       {feat}
                     </span>
                   ))}
@@ -117,7 +115,7 @@ const UnitStyleCard = ({ unit, onInterest, index }: Props) => {
 
             {/* ── Price ── */}
             {unit.price_starting_from && (
-              <div className="mb-8 border-t border-border pt-6">
+              <div className="mb-8 rounded-card-inner bg-muted/30 px-5 py-5">
                 <p className="font-body text-xs uppercase tracking-wider text-muted-foreground mb-1">
                   {t('Starting from', 'يبدأ من')}
                 </p>
@@ -133,7 +131,7 @@ const UnitStyleCard = ({ unit, onInterest, index }: Props) => {
           <button
             onClick={() => onInterest(unit)}
             disabled={unit.availability_status === 'sold'}
-            className="w-full rounded-lg bg-gradient-gold px-6 py-4 font-body text-sm font-bold uppercase tracking-wider text-primary-foreground transition-all hover:opacity-90 hover:shadow-lg disabled:opacity-30 disabled:cursor-not-allowed"
+            className="w-full rounded-pill bg-gradient-gold px-6 py-4 font-body text-sm font-bold uppercase tracking-wider text-primary-foreground transition-all hover:opacity-90 hover:shadow-lg disabled:opacity-30 disabled:cursor-not-allowed"
           >
             {t("I'm Interested in This Unit", 'أنا مهتم بهذه الوحدة')}
           </button>

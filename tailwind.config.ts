@@ -76,6 +76,13 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        "card": "1.5rem",
+        "card-inner": "1rem",
+        "pill": "9999px",
+      },
+      boxShadow: {
+        "card": "0 2px 16px 0 rgba(0,0,0,0.06)",
+        "card-hover": "0 12px 32px 0 rgba(0,0,0,0.10)",
       },
       keyframes: {
         "accordion-down": {

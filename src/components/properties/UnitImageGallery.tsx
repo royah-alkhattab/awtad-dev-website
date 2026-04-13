@@ -20,7 +20,7 @@ const UnitImageGallery = ({ images, alt }: Props) => {
   return (
     <>
       {/* Main Viewer */}
-      <div className="flex h-full flex-col bg-muted/30">
+      <div className="flex h-full flex-col bg-muted/30 rounded-card-inner overflow-hidden">
         {/* Main Image Area */}
         <div className="relative flex flex-1 items-center justify-center bg-muted/50 p-6 md:p-8">
           <AnimatePresence mode="wait">
@@ -60,7 +60,7 @@ const UnitImageGallery = ({ images, alt }: Props) => {
           {/* Expand Button */}
           <button
             onClick={() => setLightbox(true)}
-            className="absolute bottom-4 right-4 flex h-8 w-8 items-center justify-center rounded-md border border-border bg-background/80 text-muted-foreground shadow-sm backdrop-blur-sm transition-colors hover:bg-background hover:text-foreground"
+            className="absolute bottom-4 right-4 flex h-8 w-8 items-center justify-center rounded-full border border-border bg-background/80 text-muted-foreground shadow-sm backdrop-blur-sm transition-colors hover:bg-background hover:text-foreground"
             aria-label="Enlarge image"
           >
             <Expand size={14} />
@@ -68,7 +68,7 @@ const UnitImageGallery = ({ images, alt }: Props) => {
 
           {/* Counter */}
           {hasMultiple && (
-            <span className="absolute bottom-4 left-4 rounded-md bg-background/80 px-2.5 py-1 font-body text-[11px] font-medium text-muted-foreground backdrop-blur-sm">
+            <span className="absolute bottom-4 left-4 rounded-pill bg-background/80 px-3 py-1 font-body text-[11px] font-medium text-muted-foreground backdrop-blur-sm">
               {current + 1} / {images.length}
             </span>
           )}
@@ -96,7 +96,7 @@ const UnitImageGallery = ({ images, alt }: Props) => {
               <img
                 src={images[current]}
                 alt={`${alt} - enlarged`}
-                className="max-h-[85vh] max-w-[85vw] object-contain"
+                className="max-h-[85vh] max-w-[85vw] object-contain rounded-card-inner"
               />
 
               {/* Lightbox controls */}
