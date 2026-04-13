@@ -53,13 +53,19 @@ const PropertyCard = ({ property }: Props) => {
           </div>
           <h3 className="font-display text-xl font-semibold text-foreground mb-2">{name}</h3>
           <p className="font-body text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-5">{desc}</p>
-          <div className="flex items-center justify-between rounded-card-inner bg-muted/40 px-4 py-3">
-            <span className="font-body text-xs text-muted-foreground">{language === 'en' ? property.availability_summary : property.availability_summary_ar}</span>
-            <span className="flex items-center gap-1 font-body text-sm font-medium text-primary transition-colors group-hover:text-gold-dark">
-              {t('View Details', 'عرض التفاصيل')}
-              <ArrowRight size={14} className="transition-transform group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" />
+          {/* Availability chip */}
+          <div className="mb-4">
+            <span className="inline-flex items-center gap-1.5 rounded-pill bg-primary/10 px-4 py-1.5 font-body text-xs font-semibold text-primary animate-soft-pulse">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary" />
+              {language === 'en' ? property.availability_summary : property.availability_summary_ar}
             </span>
           </div>
+
+          {/* View Details CTA */}
+          <span className="flex items-center justify-center gap-2 rounded-pill bg-gradient-gold px-6 py-3 font-body text-sm font-semibold text-primary-foreground shadow-sm transition-all duration-200 ease-out group-hover:scale-[1.03] group-hover:shadow-md group-active:scale-[0.97] group-focus-visible:ring-2 group-focus-visible:ring-primary/50 group-focus-visible:ring-offset-2">
+            {t('View Details', 'عرض التفاصيل')}
+            <ArrowRight size={15} className="transition-transform duration-200 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" />
+          </span>
         </div>
       </div>
     </Link>
