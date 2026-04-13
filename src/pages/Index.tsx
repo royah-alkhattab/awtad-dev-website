@@ -5,6 +5,7 @@ import { ArrowRight, Building2, Users, Award, MapPin, Shield, TrendingUp, Gem, C
 import PropertyCard from '@/components/properties/PropertyCard';
 import ScrollReveal from '@/components/shared/ScrollReveal';
 import AnimatedCounter from '@/components/shared/AnimatedCounter';
+import { PropertiesGridSkeleton } from '@/components/shared/PageSkeleton';
 import { getProperties } from '@/services/api';
 import heroImg from '@/assets/cta-bg.jpeg';
 import property1 from '@/assets/property-1.jpg';
@@ -143,7 +144,7 @@ const Index = () => {
           </ScrollReveal>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {loading ? (
-              <p className="text-muted-foreground">{t('Loading...', 'جاري التحميل...')}</p>
+              <PropertiesGridSkeleton />
             ) : (
               properties.slice(0, 3).map((p, i) => (
                 <ScrollReveal key={p.id} delay={i * 0.1}>
