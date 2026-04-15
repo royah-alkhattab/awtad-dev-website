@@ -185,7 +185,7 @@ const mockProperties: Property[] = [
     amenities_ar: ['مسبح', 'صالة رياضية', 'شاطئ خاص', 'خدمة الكونسيرج', 'مواقف سيارات', 'حديقة', 'منزل ذكي', 'إطلالة بحرية', 'أسقف عالية'],
     features: [],
     features_ar: [],
-    map_embed_url: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.1234!2d58.3248!3d23.5880!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDM1JzE2LjgiTiA1OMKwMTknMjkuMyJF!5e0!3m2!1sen!2som',
+    map_embed_url: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3475.227287824418!2d58.3878515751104!3d23.599687078773474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e91ff5b5305feef%3A0x9e883cf2485fec8!2zQXd0YWQgcmVhbGVzYXRlIHwg2KPZiNiq2KfYryDZhNmE2KrYt9mI2YrYsSDYp9mE2LnZgtin2LHZig!5e1!3m2!1sen!2som!4v1776254655507!5m2!1sen!2som',
     created_at: '2024-01-15',
     updated_at: '2024-06-01',
   },
