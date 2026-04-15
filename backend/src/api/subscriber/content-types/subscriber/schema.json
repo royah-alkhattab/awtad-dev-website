@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subscribers",
+  "info": {
+    "singularName": "subscriber",
+    "pluralName": "subscribers",
+    "displayName": "Subscriber",
+    "description": "Newsletter subscribers (email or phone)"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "contact_value": {
+      "type": "string",
+      "required": true
+    },
+    "contact_type": {
+      "type": "enumeration",
+      "enum": ["email", "phone"],
+      "required": true,
+      "default": "email"
+    }
+  }
+}

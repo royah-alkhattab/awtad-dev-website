@@ -37,6 +37,7 @@ interface StrapiBuilding {
   gallery?: { url: string }[];
   properties?: StrapiProperty[];
   map_embed_url?: string;
+  project_progress?: number;
   amenities?: string[];
   amenities_ar?: string[];
   createdAt: string;
@@ -132,6 +133,7 @@ function mapBuildingToProperty(building: StrapiBuilding): Property {
     features: [],
     features_ar: [],
     map_embed_url: building.map_embed_url || undefined,
+    project_progress: typeof building.project_progress === 'number' ? building.project_progress : undefined,
     created_at: building.createdAt,
     updated_at: building.updatedAt,
   };
@@ -473,6 +475,31 @@ export async function submitInterestForm(inquiry: Inquiry): Promise<{ success: b
   await delay(600);
   console.log('Inquiry submitted:', inquiry);
   return { success: true };
+}
+
+export async function subscribeNewsletter(
+  contactValue: string,
+  contactType: 'email' | 'phone',
+  honeypot?: string
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    const res = await fetch(`${API_BASE_URL}/subscribers`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        data: {
+          contact_value: contactValue,
+          contact_type: contactType,
+          company_name: honeypot || '',
+        },
+      }),
+    });
+    if (res.ok) return { success: true };
+    const errorData = await res.json().catch(() => ({}));
+    return { success: false, error: errorData?.error?.message || 'Subscription failed' };
+  } catch {
+    return { success: false, error: 'Network error' };
+  }
 }
 
 export { mockProperties, mockUnits };

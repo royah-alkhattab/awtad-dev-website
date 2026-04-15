@@ -184,8 +184,8 @@ const Index = () => {
             </h2>
             <p className="font-body text-base leading-[1.8] text-muted-foreground mb-5">
               {t(
-                'For over 5 years, Awtad has been at the forefront of property development in the Sultanate of Oman, creating spaces that inspire and endure. Our commitment to quality, innovation, and client satisfaction has established us as one of the most trusted names in the industry.',
-                'منذ أكثر من 5 أعوام، تتصدر أوتاد مشهد التطوير العقاري في سلطنة عُمان، وتبتكر مساحات تلهم وتدوم. لقد رسّخ التزامنا بالجودة والابتكار ورضا العملاء اسمنا كأحد أكثر الأسماء الموثوقة في القطاع.'
+                'For over 14 years, Awtad has been at the forefront of property development in the Sultanate of Oman, creating spaces that inspire and endure. Our commitment to quality, innovation, and client satisfaction has established us as one of the most trusted names in the industry.',
+                'منذ أكثر من 14 أعوام، تتصدر أوتاد مشهد التطوير العقاري في سلطنة عُمان، وتبتكر مساحات تلهم وتدوم. لقد رسّخ التزامنا بالجودة والابتكار ورضا العملاء اسمنا كأحد أكثر الأسماء الموثوقة في القطاع.'
               )}
             </p>
             <p className="font-body text-base leading-[1.8] text-muted-foreground mb-8">
@@ -205,7 +205,7 @@ const Index = () => {
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/80 to-transparent p-8 pt-20">
                 <div className="flex items-end gap-6">
                   <div>
-                    <p className="font-display text-4xl font-bold text-gradient-gold">5+</p>
+                    <p className="font-display text-4xl font-bold text-gradient-gold">14+</p>
                     <p className="font-body text-sm text-cream/80 mt-1">{t('Years of Excellence', 'عاماً من التميز')}</p>
                   </div>
                   <div className="h-12 w-px bg-cream/20" />

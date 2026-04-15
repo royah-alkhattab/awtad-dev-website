@@ -20,6 +20,7 @@ export interface Property {
   features: string[];
   features_ar: string[];
   map_embed_url?: string;
+  project_progress?: number;
   created_at: string;
   updated_at: string;
 }

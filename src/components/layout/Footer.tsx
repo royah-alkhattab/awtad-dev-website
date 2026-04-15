@@ -1,9 +1,31 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
 import { MapPin, Phone, Instagram } from 'lucide-react';
+import { subscribeNewsletter } from '@/services/api';
 
 const Footer = () => {
-  const { t } = useLanguage();
+  const { t, dir } = useLanguage();
+  const [contactType, setContactType] = useState<'email' | 'phone'>('email');
+  const [value, setValue] = useState('');
+  const [honeypot, setHoneypot] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!value.trim() || status === 'loading') return;
+    setStatus('loading');
+    setErrorMsg('');
+    const res = await subscribeNewsletter(value.trim(), contactType, honeypot);
+    if (res.success) {
+      setStatus('success');
+      setValue('');
+    } else {
+      setStatus('error');
+      setErrorMsg(res.error || t('Something went wrong.', 'حدث خطأ ما.'));
+    }
+  };
 
   return (
     <footer className="border-t border-border bg-accent text-accent-foreground">
@@ -67,16 +89,73 @@ const Footer = () => {
             <p className="font-body text-sm opacity-80 mb-4">
               {t('Subscribe for the latest project updates.', 'اشترك لتلقي آخر تحديثات المشاريع.')}
             </p>
-            <div className="flex gap-2">
-              <input
-                type="email"
-                placeholder={t('Your email', 'بريدك الإلكتروني')}
-                className="flex-1 rounded-md border border-border bg-background/10 px-3 py-2 font-body text-sm text-accent-foreground placeholder:opacity-50 focus:outline-none focus:ring-1 focus:ring-primary"
-              />
-              <button className="rounded-md bg-gradient-gold px-4 py-2 font-body text-xs font-semibold text-primary-foreground">
-                {t('Subscribe', 'اشترك')}
+
+            {/* Toggle */}
+            <div className="mb-3 inline-flex rounded-pill border border-accent-foreground/15 bg-background/10 p-1">
+              <button
+                type="button"
+                onClick={() => { setContactType('email'); setValue(''); setStatus('idle'); }}
+                className={`rounded-pill px-3 py-1 font-body text-xs font-medium transition-colors ${
+                  contactType === 'email' ? 'bg-gradient-gold text-primary-foreground' : 'opacity-70 hover:opacity-100'
+                }`}
+              >
+                {t('Email', 'بريد إلكتروني')}
+              </button>
+              <button
+                type="button"
+                onClick={() => { setContactType('phone'); setValue(''); setStatus('idle'); }}
+                className={`rounded-pill px-3 py-1 font-body text-xs font-medium transition-colors ${
+                  contactType === 'phone' ? 'bg-gradient-gold text-primary-foreground' : 'opacity-70 hover:opacity-100'
+                }`}
+              >
+                {t('Phone', 'هاتف')}
               </button>
             </div>
+
+            <form onSubmit={handleSubscribe} className="flex gap-2">
+              {/* Honeypot */}
+              <input
+                type="text"
+                name="company_name"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, opacity: 0 }}
+              />
+              <input
+                type={contactType === 'email' ? 'email' : 'tel'}
+                dir={contactType === 'phone' ? 'ltr' : dir}
+                required
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+                placeholder={contactType === 'email'
+                  ? t('Your email', 'بريدك الإلكتروني')
+                  : t('Your phone number', 'رقم هاتفك')}
+                className="flex-1 rounded-md border border-border bg-background/10 px-3 py-2 font-body text-sm text-accent-foreground placeholder:opacity-50 focus:outline-none focus:ring-1 focus:ring-primary"
+              />
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                className="rounded-md bg-gradient-gold px-4 py-2 font-body text-xs font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
+              >
+                {status === 'loading'
+                  ? t('Sending...', 'جارٍ الإرسال...')
+                  : t('Subscribe', 'اشترك')}
+              </button>
+            </form>
+
+            {status === 'success' && (
+              <p className="mt-2 font-body text-xs text-emerald-400">
+                {t('Thanks for subscribing!', 'شكراً لاشتراكك!')}
+              </p>
+            )}
+            {status === 'error' && (
+              <p className="mt-2 font-body text-xs text-red-400">
+                {errorMsg}
+              </p>
+            )}
           </div>
         </div>
 

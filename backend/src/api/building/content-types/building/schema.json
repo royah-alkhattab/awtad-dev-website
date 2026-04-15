@@ -91,6 +91,11 @@
     "amenities_ar": {
       "type": "json",
       "required": false
+    },
+    "project_progress": {
+      "type": "integer",
+      "min": 0,
+      "max": 100
     }
   }
 }
