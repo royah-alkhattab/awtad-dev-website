@@ -133,7 +133,9 @@ function mapBuildingToProperty(building: StrapiBuilding): Property {
     features: [],
     features_ar: [],
     map_embed_url: building.map_embed_url || undefined,
-    project_progress: typeof building.project_progress === 'number' ? building.project_progress : undefined,
+    project_progress: typeof building.project_progress === 'number'
+      ? building.project_progress
+      : building.slug === 'al-noor-residences' ? 70 : undefined,
     created_at: building.createdAt,
     updated_at: building.updatedAt,
   };
@@ -188,6 +190,7 @@ const mockProperties: Property[] = [
     features: [],
     features_ar: [],
     map_embed_url: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3475.227287824418!2d58.3878515751104!3d23.599687078773474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e91ff5b5305feef%3A0x9e883cf2485fec8!2zQXd0YWQgcmVhbGVzYXRlIHwg2KPZiNiq2KfYryDZhNmE2KrYt9mI2YrYsSDYp9mE2LnZgtin2LHZig!5e1!3m2!1sen!2som!4v1776254655507!5m2!1sen!2som',
+    project_progress: 70,
     created_at: '2024-01-15',
     updated_at: '2024-06-01',
   },
