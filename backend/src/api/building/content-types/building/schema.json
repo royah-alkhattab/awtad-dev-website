@@ -81,6 +81,9 @@
       "target": "api::property.property",
       "mappedBy": "building"
     },
+    "map_embed_url": {
+      "type": "string"
+    },
     "amenities": {
       "type": "json",
       "required": false

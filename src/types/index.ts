@@ -19,6 +19,7 @@ export interface Property {
   amenities_ar: string[];
   features: string[];
   features_ar: string[];
+  map_embed_url?: string;
   created_at: string;
   updated_at: string;
 }

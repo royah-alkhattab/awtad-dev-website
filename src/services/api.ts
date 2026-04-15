@@ -36,6 +36,7 @@ interface StrapiBuilding {
   image?: { url: string };
   gallery?: { url: string }[];
   properties?: StrapiProperty[];
+  map_embed_url?: string;
   amenities?: string[];
   amenities_ar?: string[];
   createdAt: string;
@@ -130,6 +131,7 @@ function mapBuildingToProperty(building: StrapiBuilding): Property {
     amenities_ar: building.amenities_ar || [],
     features: [],
     features_ar: [],
+    map_embed_url: building.map_embed_url || undefined,
     created_at: building.createdAt,
     updated_at: building.updatedAt,
   };
@@ -183,6 +185,7 @@ const mockProperties: Property[] = [
     amenities_ar: ['مسبح', 'صالة رياضية', 'شاطئ خاص', 'خدمة الكونسيرج', 'مواقف سيارات', 'حديقة', 'منزل ذكي', 'إطلالة بحرية', 'أسقف عالية'],
     features: [],
     features_ar: [],
+    map_embed_url: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.1234!2d58.3248!3d23.5880!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDM1JzE2LjgiTiA1OMKwMTknMjkuMyJF!5e0!3m2!1sen!2som',
     created_at: '2024-01-15',
     updated_at: '2024-06-01',
   },

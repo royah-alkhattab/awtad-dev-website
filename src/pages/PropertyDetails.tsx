@@ -7,7 +7,7 @@ import UnitFilters from '@/components/properties/UnitFilters';
 import InterestForm from '@/components/shared/InterestForm';
 import ScrollReveal from '@/components/shared/ScrollReveal';
 import type { Property, Unit } from '@/types';
-import { MapPin, Building2, Calendar, ArrowLeft, X, CheckCircle2 } from 'lucide-react';
+import { MapPin, Building2, Calendar, ArrowLeft, X, CheckCircle2, ExternalLink } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PropertyDetailsSkeleton } from '@/components/shared/PageSkeleton';
 
@@ -112,6 +112,35 @@ const PropertyDetails = () => {
           <ScrollReveal className="lg:col-span-2">
             <h2 className="font-display text-2xl font-bold text-foreground mb-4">{t('Project Overview', 'نظرة عامة')}</h2>
             <p className="font-body text-base leading-relaxed text-muted-foreground">{desc}</p>
+
+            {/* Map */}
+            {property.map_embed_url && (
+              <div className="mt-10">
+                <h3 className="font-display text-xl font-semibold text-foreground mb-4">{t('Location', 'الموقع')}</h3>
+                <div className="overflow-hidden rounded-card-inner border border-border/60">
+                  <iframe
+                    src={property.map_embed_url}
+                    title={`${name} - ${t('Location', 'الموقع')}`}
+                    width="100%"
+                    height="300"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="block w-full"
+                  />
+                </div>
+                <a
+                  href={property.map_embed_url.replace('/embed?', '/search?')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex items-center gap-2 font-body text-sm font-medium text-primary transition-colors hover:text-gold-dark"
+                >
+                  <ExternalLink size={14} />
+                  {t('Open in Google Maps', 'فتح في خرائط جوجل')}
+                </a>
+              </div>
+            )}
 
             {(language === 'en' ? property.amenities : property.amenities_ar).length > 0 && (
               <>
