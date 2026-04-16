@@ -6,6 +6,9 @@ COPY package.json package-lock.json ./
 RUN npm install
 
 COPY . .
+
+ENV NODE_ENV=production
+RUN npx strapi ts:generate-types || true
 RUN npm run build
 
 EXPOSE 1337
