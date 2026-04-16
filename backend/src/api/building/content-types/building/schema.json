@@ -82,7 +82,7 @@
       "mappedBy": "building"
     },
     "map_embed_url": {
-      "type": "string"
+      "type": "text"
     },
     "amenities": {
       "type": "json",
