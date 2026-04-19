@@ -71,7 +71,7 @@ const PropertyDetails = () => {
           key={galleryIndex}
           src={property.gallery_images[galleryIndex] || property.cover_image}
           alt={name}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-contain"
           initial={{ scale: 1.05, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.8, ease: [0, 0, 0.2, 1] }}
