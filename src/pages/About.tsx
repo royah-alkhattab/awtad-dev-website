@@ -1,7 +1,7 @@
 import { useLanguage } from '@/context/LanguageContext';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Award, Users, Target, Eye } from 'lucide-react';
+import { Target, Eye, Shield, Gem, Leaf, Lightbulb } from 'lucide-react';
 import ScrollReveal from '@/components/shared/ScrollReveal';
 import aboutHero from '@/assets/about-hero.jpg';
 import heroImg from '@/assets/hero-main.jpeg';
@@ -16,6 +16,41 @@ const About = () => {
 
   const team = [
     { name: t('Said Al Maawali', 'سعيد المعولي'), role: t('Chief Executive Officer', 'الرئيس التنفيذي'), image: saidProfile },
+  ];
+
+  const values = [
+    {
+      icon: Shield,
+      title: t('Transparency', 'الشفافية'),
+      desc: t(
+        'We believe in the importance of trust and building trust with our clients and partners.',
+        'نؤمن بأهمية الثقة وبناء الثقة مع عملائنا وشركائنا.'
+      ),
+    },
+    {
+      icon: Gem,
+      title: t('Quality', 'الجودة'),
+      desc: t(
+        'Commitment to the highest standards at every stage of development.',
+        'الالتزام بأعلى المعايير في جميع مراحل التطوير.'
+      ),
+    },
+    {
+      icon: Leaf,
+      title: t('Sustainability', 'الاستدامة'),
+      desc: t(
+        'Delivering projects that respect the environment and serve future generations.',
+        'تقديم مشاريع تحترم البيئة وتخدم الأجيال القادمة.'
+      ),
+    },
+    {
+      icon: Lightbulb,
+      title: t('Innovation', 'الابتكار'),
+      desc: t(
+        'Adopting the latest technologies and trends in the real estate world.',
+        'اعتماد أحدث التقنيات والتوجهات في عالم العقارات.'
+      ),
+    },
   ];
 
   return (
@@ -41,38 +76,102 @@ const About = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="font-display text-4xl font-bold text-cream md:text-5xl"
           >
-            {t('Our Story', 'قصتنا')}
+            {t('About Us', 'من نحن')}
           </motion.h1>
         </div>
       </section>
 
-      {/* Mission / Vision */}
+      {/* About Us */}
       <section className="section-padding">
-        <div className="container-premium grid gap-16 md:grid-cols-2">
-          <ScrollReveal direction="left">
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-              <Target size={24} />
-            </div>
-            <h2 className="font-display text-2xl font-bold text-foreground mb-4">{t('Our Mission', 'مهمتنا')}</h2>
+        <div className="container-premium max-w-4xl">
+          <ScrollReveal>
+            <h2 className="font-display text-3xl font-bold text-foreground mb-6 md:text-4xl">
+              {t('Who We Are', 'من نحن')}
+            </h2>
+            <p className="font-body text-base leading-relaxed text-muted-foreground mb-4">
+              {t(
+                'Awtaad Real Estate Development is a leading developer of residential and commercial projects. We strive to provide innovative real estate solutions that meet the needs of the local and regional market. In all our projects, we adhere to the highest standards of quality and innovation, focusing on building modern communities that reflect our values and vision for the future.',
+                'شركة أوتاد للتطوير العقاري هي شركة رائدة في تطوير المشاريع السكنية والتجارية، تسعى إلى تقديم حلول عقارية مبتكرة تلبي احتياجات السوق المحلي والإقليمي، وتلتزم في جميع مشاريعها بأعلى معايير الجودة والابتكار، مع التركيز على بناء مجتمعات حديثة تعكس قيمها ورؤيتها للمستقبل.'
+              )}
+            </p>
             <p className="font-body text-base leading-relaxed text-muted-foreground">
               {t(
-                'To create exceptional living and working environments that elevate lifestyles, inspire communities, and deliver enduring value through innovative design, sustainable practices, and unwavering commitment to quality.',
-                'خلق بيئات معيشة وعمل استثنائية ترتقي بأساليب الحياة وتلهم المجتمعات وتقدم قيمة دائمة من خلال التصميم المبتكر والممارسات المستدامة والالتزام الراسخ بالجودة.'
+                'We are also proud of our expansion into international markets through real estate projects in the United Kingdom (UK), reflecting the trust of our clients and our vision for global expansion and sustainable investment.',
+                'كما نفخر بتوسّعنا في الأسواق الدولية من خلال تنفيذ مشاريع عقارية في المملكة المتحدة (UK)، مما يعكس ثقة عملائنا ورؤيتنا نحو التوسع العالمي والاستثمار المستدام.'
               )}
             </p>
           </ScrollReveal>
-          <ScrollReveal direction="right">
+        </div>
+      </section>
+
+      {/* Vision & Objectives */}
+      <section className="section-padding bg-secondary">
+        <div className="container-premium grid gap-16 md:grid-cols-2">
+          <ScrollReveal direction="left">
             <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
               <Eye size={24} />
             </div>
             <h2 className="font-display text-2xl font-bold text-foreground mb-4">{t('Our Vision', 'رؤيتنا')}</h2>
             <p className="font-body text-base leading-relaxed text-muted-foreground">
               {t(
-                'To be the most trusted and admired property developer in the region, known for landmark projects that set new benchmarks in design, sustainability, and resident satisfaction.',
-                'أن نكون المطور العقاري الأكثر ثقة وإعجاباً في المنطقة، معروفين بمشاريع بارزة تضع معايير جديدة في التصميم والاستدامة ورضا السكان.'
+                'To be pioneers in real estate development by delivering exceptional projects that contribute to creating sustainable value for our clients and the community, reflecting the highest standards of excellence in quality and urban planning.',
+                'أن نكون رواد التطوير العقاري من خلال تقديم مشاريع استثنائية تساهم في خلق قيمة مستدامة للعملاء والمجتمع، وتعكس أعلى معايير التميز في الجودة والتخطيط العمراني.'
               )}
             </p>
           </ScrollReveal>
+          <ScrollReveal direction="right">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+              <Target size={24} />
+            </div>
+            <h2 className="font-display text-2xl font-bold text-foreground mb-4">{t('Objectives', 'الأهداف')}</h2>
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3">
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-gradient-gold" />
+                <p className="font-body text-base leading-relaxed text-muted-foreground">
+                  {t(
+                    'Developing 587 residential units by the end of 2029.',
+                    'تنفيذ 587 وحدة سكنية نهاية 2029.'
+                  )}
+                </p>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-gradient-gold" />
+                <p className="font-body text-base leading-relaxed text-muted-foreground">
+                  {t(
+                    'Establishing the company as one of the leading real estate developers in the local market.',
+                    'ترسيخ اسم الشركة كواحدة من أبرز المطورين العقاريين في السوق المحلي.'
+                  )}
+                </p>
+              </li>
+            </ul>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Our Values */}
+      <section className="section-padding">
+        <div className="container-premium">
+          <ScrollReveal className="mb-12 text-center">
+            <p className="mb-2 font-body text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+              {t('What Drives Us', 'ما يحركنا')}
+            </p>
+            <h2 className="font-display text-3xl font-bold text-foreground md:text-4xl">
+              {t('Our Values', 'قيمنا')}
+            </h2>
+          </ScrollReveal>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {values.map((v, i) => (
+              <ScrollReveal key={i} delay={i * 0.1}>
+                <div className="rounded-card border border-border/60 bg-card p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1 text-center">
+                  <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                    <v.icon size={22} />
+                  </div>
+                  <h3 className="font-display text-lg font-semibold text-foreground mb-2">{v.title}</h3>
+                  <p className="font-body text-sm leading-relaxed text-muted-foreground">{v.desc}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -89,12 +188,12 @@ const About = () => {
               {t('Our Journey', 'مسيرتنا')}
             </p>
             <h2 className="font-display text-3xl font-bold text-foreground mb-6">
-              {t('5 Years of Shaping Skylines', '5 أعوام من تشكيل الأفق')}
+              {t('14 Years of Shaping Skylines', '14 أعوام من تشكيل الأفق')}
             </h2>
             <p className="font-body text-base leading-relaxed text-muted-foreground mb-4">
               {t(
-                'Founded in 2021, Awtad Development has grown from a visionary startup into one of the leading property developers in Oman. Our portfolio spans residential towers, luxury villas, and mixed-use developments across prime locations.',
-                'تأسست أوتاد للتطوير في عام 2021، ونمت من شركة ناشئة ذات رؤية إلى واحدة من أبرز شركات التطوير العقاري في عُمان.'
+                'Awtaad Development was founded in 2012 and has grown from a visionary startup to one of the leading real estate development companies in Oman.',
+                'تأسست أوتاد للتطوير في عام 2012 ، ونمت من شركة ناشئة ذات رؤية إلى واحدة من أبرز شركات التطوير العقاري في عُمان.'
               )}
             </p>
             <p className="font-body text-base leading-relaxed text-muted-foreground">

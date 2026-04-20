@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useParams, Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
 import { getPropertyBySlug, getUnitsByProperty } from '@/services/api';
@@ -71,7 +72,7 @@ const PropertyDetails = () => {
           key={galleryIndex}
           src={property.gallery_images[galleryIndex] || property.cover_image}
           alt={name}
-          className="h-full w-full object-contain"
+          className="h-full w-full object-cover"
           initial={{ scale: 1.05, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.8, ease: [0, 0, 0.2, 1] }}
@@ -239,43 +240,46 @@ const PropertyDetails = () => {
         </section>
       )}
 
-      {/* Interest Form Modal */}
-      <AnimatePresence>
-        {showForm && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/50 p-4 backdrop-blur-sm"
-            onClick={() => setShowForm(false)}
-          >
+      {/* Interest Form Modal — portal to body so fixed positioning isn't broken by parent filters/transforms */}
+      {createPortal(
+        <AnimatePresence>
+          {showForm && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-lg border border-border bg-background p-8 shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/50 p-4 backdrop-blur-sm"
+              onClick={() => setShowForm(false)}
             >
-              <div className="mb-6 flex items-center justify-between">
-                <h3 className="font-display text-xl font-semibold text-foreground">
-                  {selectedUnit ? t("I'm Interested", 'أنا مهتم') : t('Register Interest', 'سجل اهتمامك')}
-                </h3>
-                <button onClick={() => setShowForm(false)} className="text-muted-foreground hover:text-foreground">
-                  <X size={20} />
-                </button>
-              </div>
-              <InterestForm
-                inquiryType={selectedUnit ? 'unit' : 'project'}
-                propertyId={property.id}
-                unitId={selectedUnit?.id}
-                propertyName={name}
-                unitName={selectedUnit ? (language === 'en' ? selectedUnit.title_en : selectedUnit.title_ar) : undefined}
-                onClose={() => setShowForm(false)}
-              />
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                className="w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-lg border border-border bg-background p-8 shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="mb-6 flex items-center justify-between">
+                  <h3 className="font-display text-xl font-semibold text-foreground">
+                    {selectedUnit ? t("I'm Interested", 'أنا مهتم') : t('Register Interest', 'سجل اهتمامك')}
+                  </h3>
+                  <button onClick={() => setShowForm(false)} className="text-muted-foreground hover:text-foreground">
+                    <X size={20} />
+                  </button>
+                </div>
+                <InterestForm
+                  inquiryType={selectedUnit ? 'unit' : 'project'}
+                  propertyId={property.id}
+                  unitId={selectedUnit?.id}
+                  propertyName={name}
+                  unitName={selectedUnit ? (language === 'en' ? selectedUnit.title_en : selectedUnit.title_ar) : undefined}
+                  onClose={() => setShowForm(false)}
+                />
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </>
   );
 };
