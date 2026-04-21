@@ -36,7 +36,7 @@ const UnitStyleCard = ({ unit, onInterest, index }: Props) => {
     { icon: <Gem size={18} />, label: t('Balconies', 'الشرفات'), value: unit.balconies, show: unit.balconies > 0 },
     { icon: <Waves size={18} />, label: t('Living Rooms', 'الصالات'), value: unit.living_rooms, show: unit.living_rooms > 0 },
     { icon: <Briefcase size={18} />, label: t('Working Rooms', 'غرف العمل'), value: unit.working_rooms, show: unit.working_rooms > 0 },
-    { icon: <Building2 size={18} />, label: t('Floors', 'الطوابق'), value: unit.floor, show: unit.floor && unit.floor !== '0' && unit.floor !== '1' },
+    { icon: <Building2 size={18} />, label: t('Floors', 'الطوابق'), value: unit.floor, show: !!(unit.floor && unit.floor.trim() && unit.floor !== '0') },
   ];
 
   const specs = allSpecs.filter(spec => spec.show);

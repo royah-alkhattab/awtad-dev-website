@@ -61,8 +61,7 @@
       "default": 0
     },
     "floors": {
-      "type": "integer",
-      "default": 1
+      "type": "string"
     },
     "display_order": {
       "type": "integer",
@@ -83,7 +82,7 @@
     },
     "property_type": {
       "type": "enumeration",
-      "enum": ["apartment", "villa", "penthouse", "studio", "townhouse", "commercial"],
+      "enum": ["apartment", "villa", "penthouse", "studio", "townhouse", "commercial", "shop"],
       "required": true
     },
     "gallery": {

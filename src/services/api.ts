@@ -59,7 +59,7 @@ interface StrapiProperty {
   kitchens: number;
   property_status: 'available' | 'reserved' | 'sold';
   property_type: string;
-  floors: number;
+  floors: string | number;
   living_rooms: number;
   balconies: number;
   working_rooms: number;
@@ -406,6 +406,7 @@ const propertyTypeAr: Record<string, string> = {
   townhouse: 'تاون هاوس',
   office: 'مكتب',
   shop: 'محل',
+  commercial: 'تجاري',
   warehouse: 'مستودع',
 };
 
@@ -430,7 +431,7 @@ function mapPropertyToUnit(prop: StrapiProperty, buildingId: string): Unit {
     balconies: prop.balconies || 0,
     living_rooms: prop.living_rooms || 1,
     working_rooms: prop.working_rooms || 0,
-    floor: prop.floors ? String(prop.floors) : '1',
+    floor: prop.floors ? String(prop.floors).trim() : '',
     extra_features: prop.extra_features || [],
     extra_features_ar: prop.extra_features_ar || [],
     total_units: prop.total_units || 0,
