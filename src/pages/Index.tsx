@@ -44,7 +44,7 @@ const Index = () => {
 
   const stats = [
     { value: '14', label: t('Years of Excellence', 'عاماً من التميز'), suffix: '+' },
-    { value: '1,000', label: t('Units Delivered', 'وحدة تم تسليمها'), suffix: '+' },
+    { value: '92', label: t('Units Delivered', 'وحدة تم تسليمها'), suffix: '+' },
     { value: '4', label: t('Active Projects', 'مشروع نشط'), suffix: '' },
     { value: '98', label: t('Client Satisfaction', 'رضا العملاء'), suffix: '%' },
   ];
