@@ -8,7 +8,27 @@ import UnitFilters from '@/components/properties/UnitFilters';
 import InterestForm from '@/components/shared/InterestForm';
 import ScrollReveal from '@/components/shared/ScrollReveal';
 import type { Property, Unit } from '@/types';
-import { MapPin, Building2, Calendar, ArrowLeft, X, CheckCircle2, ExternalLink } from 'lucide-react';
+import { MapPin, Building2, Calendar, ArrowLeft, X, CheckCircle2, ExternalLink, Waves, Dumbbell, Car, ShieldCheck, Sparkles, LayoutGrid, Sofa, Flame, Baby, TreePine, Wifi, Zap, Wind, Users, ChefHat } from 'lucide-react';
+
+const getAmenityIcon = (label: string) => {
+  const s = label.toLowerCase();
+  if (/pool|swim|مسبح|سباحة|بركة/.test(s)) return Waves;
+  if (/gym|fitness|رياض|نادي|صالة/.test(s)) return Dumbbell;
+  if (/park|garage|موقف|سيار|مواقف|كراج/.test(s)) return Car;
+  if (/secur|guard|أمن|أمني|حراس/.test(s)) return ShieldCheck;
+  if (/luxury|premium|high.?end|finish|فاخر|راقي|راقية|فخم|تشطيب/.test(s)) return Sparkles;
+  if (/design|modern|comfort|تصميم|عصري|حديث|مريح/.test(s)) return LayoutGrid;
+  if (/seat|lounge|sofa|جلوس|استراحة|مقاعد/.test(s)) return Sofa;
+  if (/bbq|barbecue|grill|الشوي|شواء|شوي/.test(s)) return Flame;
+  if (/kid|child|play|أطفال|اطفال|لعب/.test(s)) return Baby;
+  if (/garden|tree|park|landscape|حديقة|أشجار|مساحة خضراء/.test(s)) return TreePine;
+  if (/wifi|internet|إنترنت|واي فاي|انترنت/.test(s)) return Wifi;
+  if (/electric|generator|power|كهرباء|مولد/.test(s)) return Zap;
+  if (/ac|air|cooling|conditioning|تكييف|تبريد/.test(s)) return Wind;
+  if (/community|social|hall|مجتمع|قاعة|اجتماع/.test(s)) return Users;
+  if (/kitchen|chef|مطبخ|طبخ/.test(s)) return ChefHat;
+  return CheckCircle2;
+};
 import { motion, AnimatePresence } from 'framer-motion';
 import { PropertyDetailsSkeleton } from '@/components/shared/PageSkeleton';
 
@@ -175,11 +195,14 @@ const PropertyDetails = () => {
               <>
                 <h3 className="font-display text-xl font-semibold text-foreground mt-10 mb-4">{t('Amenities', 'المرافق')}</h3>
                 <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
-                  {(language === 'en' ? property.amenities : property.amenities_ar).map((item, i) => (
-                    <div key={i} className="flex items-center gap-2 rounded-md bg-muted/50 px-4 py-3 font-body text-sm text-foreground">
-                      <CheckCircle2 size={14} className="shrink-0 text-primary" /> {item}
-                    </div>
-                  ))}
+                  {(language === 'en' ? property.amenities : property.amenities_ar).map((item, i) => {
+                    const Icon = getAmenityIcon(item);
+                    return (
+                      <div key={i} className="flex items-center gap-2 rounded-md bg-muted/50 px-4 py-3 font-body text-sm text-foreground">
+                        <Icon size={14} className="shrink-0 text-primary" /> {item}
+                      </div>
+                    );
+                  })}
                 </div>
               </>
             )}
