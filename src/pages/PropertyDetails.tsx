@@ -37,6 +37,14 @@ const PropertyDetails = () => {
     });
   }, [slug]);
 
+  useEffect(() => {
+    if (!property || property.gallery_images.length <= 1) return;
+    const id = setInterval(() => {
+      setGalleryIndex((i) => (i + 1) % property.gallery_images.length);
+    }, 5000);
+    return () => clearInterval(id);
+  }, [property, galleryIndex]);
+
   if (loading) {
     return <PropertyDetailsSkeleton />;
   }

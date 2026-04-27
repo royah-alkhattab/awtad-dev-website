@@ -94,12 +94,6 @@ const About = () => {
                 'شركة أوتاد للتطوير العقاري هي شركة رائدة في تطوير المشاريع السكنية والتجارية، تسعى إلى تقديم حلول عقارية مبتكرة تلبي احتياجات السوق المحلي والإقليمي، وتلتزم في جميع مشاريعها بأعلى معايير الجودة والابتكار، مع التركيز على بناء مجتمعات حديثة تعكس قيمها ورؤيتها للمستقبل.'
               )}
             </p>
-            <p className="font-body text-base leading-relaxed text-muted-foreground">
-              {t(
-                'We are also proud of our expansion into international markets through real estate projects in the United Kingdom (UK), reflecting the trust of our clients and our vision for global expansion and sustainable investment.',
-                'كما نفخر بتوسّعنا في الأسواق الدولية من خلال تنفيذ مشاريع عقارية في المملكة المتحدة (UK)، مما يعكس ثقة عملائنا ورؤيتنا نحو التوسع العالمي والاستثمار المستدام.'
-              )}
-            </p>
           </ScrollReveal>
         </div>
       </section>

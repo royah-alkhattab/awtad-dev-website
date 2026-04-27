@@ -208,11 +208,6 @@ const Index = () => {
                     <p className="font-display text-4xl font-bold text-gradient-gold">14+</p>
                     <p className="font-body text-sm text-cream/80 mt-1">{t('Years of Excellence', 'عاماً من التميز')}</p>
                   </div>
-                  <div className="h-12 w-px bg-cream/20" />
-                  <div>
-                    <p className="font-display text-4xl font-bold text-gradient-gold">1,000+</p>
-                    <p className="font-body text-sm text-cream/80 mt-1">{t('Units Delivered', 'وحدة تم تسليمها')}</p>
-                  </div>
                 </div>
               </div>
             </div>
