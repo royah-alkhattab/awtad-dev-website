@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Building2, Users, Award, MapPin, Shield, TrendingUp, Gem, ChevronRight, Phone } from 'lucide-react';
 import PropertyCard from '@/components/properties/PropertyCard';
 import ScrollReveal from '@/components/shared/ScrollReveal';
+import SectionDivider from '@/components/shared/SectionDivider';
 import AnimatedCounter from '@/components/shared/AnimatedCounter';
 import { PropertiesGridSkeleton } from '@/components/shared/PageSkeleton';
 import { getProperties } from '@/services/api';
@@ -171,8 +172,10 @@ const Index = () => {
         </div>
       </section>
 
+      <SectionDivider />
+
       {/* ─── COMPANY INTRO ─── */}
-      <section className="section-padding bg-background">
+      <section className="section-padding bg-background pt-0">
         <div className="container-premium grid gap-16 md:grid-cols-2 items-center">
           <ScrollReveal direction="left">
             <div className="mb-4 h-px w-12 bg-gradient-gold" />

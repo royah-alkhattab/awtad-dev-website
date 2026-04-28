@@ -1,7 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
-import PropertyCard from '@/components/properties/PropertyCard';
-import ScrollReveal from '@/components/shared/ScrollReveal';
+import EditorialPropertyRow from '@/components/properties/EditorialPropertyRow';
 import { getProperties } from '@/services/api';
 import type { Property } from '@/types';
 import { Search, SlidersHorizontal } from 'lucide-react';
@@ -133,11 +132,9 @@ const Properties = () => {
               </p>
             </div>
           ) : (
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="space-y-24 md:space-y-32">
               {filtered.map((p, i) => (
-                <ScrollReveal key={p.id} delay={i * 0.08}>
-                  <PropertyCard property={p} />
-                </ScrollReveal>
+                <EditorialPropertyRow key={p.id} property={p} index={i} />
               ))}
             </div>
           )}

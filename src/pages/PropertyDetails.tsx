@@ -5,6 +5,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { getPropertyBySlug, getUnitsByProperty } from '@/services/api';
 import UnitStyleCard from '@/components/properties/UnitStyleCard';
 import UnitFilters from '@/components/properties/UnitFilters';
+import ProjectMilestones from '@/components/properties/ProjectMilestones';
 import InterestForm from '@/components/shared/InterestForm';
 import ScrollReveal from '@/components/shared/ScrollReveal';
 import type { Property, Unit } from '@/types';
@@ -142,21 +143,8 @@ const PropertyDetails = () => {
             <h2 className="font-display text-2xl font-bold text-foreground mb-4">{t('Project Overview', 'نظرة عامة')}</h2>
 
             {typeof property.project_progress === 'number' && (
-              <div className="mb-8 max-w-md">
-                <div className="mb-2 flex items-baseline justify-between">
-                  <span className="font-body text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-                    {t('Project Progress', 'تقدم المشروع')}
-                  </span>
-                  <span className="font-display text-sm font-semibold text-foreground" dir="ltr">
-                    {Math.max(0, Math.min(100, property.project_progress))}%
-                  </span>
-                </div>
-                <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
-                  <div
-                    className="h-full rounded-full bg-gradient-gold transition-all duration-700 ease-out"
-                    style={{ width: `${Math.max(0, Math.min(100, property.project_progress))}%` }}
-                  />
-                </div>
+              <div className="mb-10">
+                <ProjectMilestones progress={property.project_progress} />
               </div>
             )}
 
